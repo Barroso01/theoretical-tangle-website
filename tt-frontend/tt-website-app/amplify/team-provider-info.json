@@ -10,6 +10,11 @@
       "StackName": "amplify-ttwebsiteapp-dev-120546",
       "StackId": "arn:aws:cloudformation:us-west-2:483465416904:stack/amplify-ttwebsiteapp-dev-120546/c19f9c40-8961-11ee-97b6-0abe91195005",
       "AmplifyAppId": "dssjwhp94ad79"
+    },
+    "categories": {
+      "auth": {
+        "ttwebsiteapp71582ba6": {}
+      }
     }
   }
 }
