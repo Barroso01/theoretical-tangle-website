@@ -1,28 +1,39 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { Amplify } from 'aws-amplify';
+import { Amplify} from 'aws-amplify';
 import awsExports from './aws-exports';
-Amplify.configure(awsExports);
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import ProjectCard from './ProjectCard';
+import Header from './Header';
+import Footer from './Footer';
+import '@aws-amplify/ui-react/styles.css';
+import config from './amplifyconfiguration.json';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          In <code>src/App</code>  E = mc2 lies as its first theory
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+Amplify.configure(awsExports);
+Amplify.configure(config);
+
+const projects = [
+    { id: 1, title: 'Project 1', description: 'Description of Project 1', link: '/project1' },
+    { id: 2, title: 'Project 2', description: 'Description of Project 2', link: '/project2' },
+    // ... add more projects
+];
+
+function App({ signOut, user }) {
+    return (
+        <div className="App">
+            <Header  signOut={signOut} user={user} />
+            <h1>Projects</h1>
+            <main>
+                <div className="project-container">
+                    {projects.map(project => (
+                        <ProjectCard key={project.id} project={project} />
+                    ))}
+                </div>
+            </main>
+            
+            <Footer />
+        </div>
+    );
 }
 
-export default App;
+export default withAuthenticator(App);
