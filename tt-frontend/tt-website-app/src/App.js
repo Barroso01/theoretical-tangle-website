@@ -1,39 +1,57 @@
 import React from 'react';
 import './App.css';
-import { Amplify} from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import ProjectCard from './ProjectCard';
-import Header from './Header';
-import Footer from './Footer';
+import { withAuthenticator, View, Flex } from '@aws-amplify/ui-react';
+//import ProjectCard from './components/ProjectCard';
+//import Header from './layouts/Header';
+//import Footer from './layouts/Footer';
 import '@aws-amplify/ui-react/styles.css';
 import config from './amplifyconfiguration.json';
+import {
+    NavigationBar,
+    ProjectPost,
+    ProjectPostCollection
+   } from './ui-components';
 
+   //import { uploadData } from 'aws-amplify/storage';
+
+   //try {
+     //const result = await uploadData({
+       //key: filename,
+       //data: file
+     //}).result;
+     //console.log('Succeeded: ', result);
+   //} catch (error) {
+     //console.log('Error : ', error);
+   //}
+//<ProjectPostCollection  width={'100vw'} />
+
+
+   
 Amplify.configure(awsExports);
 Amplify.configure(config);
 
-const projects = [
-    { id: 1, title: 'Project 1', description: 'Description of Project 1', link: '/project1' },
-    { id: 2, title: 'Project 2', description: 'Description of Project 2', link: '/project2' },
-    // ... add more projects
-];
-
-function App({ signOut, user }) {
+function App() {
     return (
-        <div className="App">
-            <Header  signOut={signOut} user={user} />
-            <h1>Projects</h1>
-            <main>
-                <div className="project-container">
-                    {projects.map(project => (
-                        <ProjectCard key={project.id} project={project} />
-                    ))}
-                </div>
-            </main>
-            
-            <Footer />
+        <div className='App'>
+            <NavigationBar width={'100vw'} />
+            <Flex overflow = 'auto'>
+                <View className = 'project-posts'>
+                    <ProjectPost width={'100vw'} />
+                    <ProjectPost width={'100vw'} />
+
+                </View>
+            </Flex>
+
         </div>
     );
 }
 
 export default withAuthenticator(App);
+
+
+// Authentication
+// function App({ signOut, user }) {
+// <Header  signOut={signOut} user={user} />
+//export default withAuthenticator(App);
