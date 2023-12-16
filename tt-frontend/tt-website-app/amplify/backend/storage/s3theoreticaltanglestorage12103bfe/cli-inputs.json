@@ -1,0 +1,13 @@
+{
+  "resourceName": "s3theoreticaltanglestorage12103bfe",
+  "bucketName": "theoretical-tangle-storage-12103bfe",
+  "policyUUID": "f212232d",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ]
+}

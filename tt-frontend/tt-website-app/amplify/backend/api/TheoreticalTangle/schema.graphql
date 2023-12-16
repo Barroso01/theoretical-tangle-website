@@ -1,5 +1,9 @@
-type ProjectInfo @model @auth(rules: [{allow: public}]) {
+type Project @model @auth(rules: [{allow: public}]) {
   id: ID!
-  Name: String
-  Description: String
+  technologyclass: String
+  name: String
+  description: String
+  pagelink: AWSURL
+  coverimage: AWSURL
 }
+ 

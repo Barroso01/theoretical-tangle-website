@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "TheoreticalTangle": {}
+      },
+      "storage": {
+        "s3theoreticaltanglestorage12103bfe": {}
       }
     }
   }

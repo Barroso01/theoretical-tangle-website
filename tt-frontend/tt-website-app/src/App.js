@@ -3,15 +3,11 @@ import './App.css';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
 import { withAuthenticator, View, Flex } from '@aws-amplify/ui-react';
-//import ProjectCard from './components/ProjectCard';
-//import Header from './layouts/Header';
-//import Footer from './layouts/Footer';
 import '@aws-amplify/ui-react/styles.css';
 import config from './amplifyconfiguration.json';
 import {
-    NavigationBar,
-    ProjectPost,
-    ProjectPostCollection
+    NavBarHeader2,
+    ProjectCollection
    } from './ui-components';
 
    //import { uploadData } from 'aws-amplify/storage';
@@ -26,8 +22,6 @@ import {
      //console.log('Error : ', error);
    //}
 //<ProjectPostCollection  width={'100vw'} />
-
-
    
 Amplify.configure(awsExports);
 Amplify.configure(config);
@@ -35,11 +29,10 @@ Amplify.configure(config);
 function App() {
     return (
         <div className='App'>
-            <NavigationBar width={'100vw'} />
+            <NavBarHeader2 width={'100vw'} />
             <Flex overflow = 'auto'>
                 <View className = 'project-posts'>
-                    <ProjectPost width={'100vw'} />
-                    <ProjectPost width={'100vw'} />
+                    <ProjectCollection width={'100vw'} />
 
                 </View>
             </Flex>
