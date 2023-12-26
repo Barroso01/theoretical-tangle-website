@@ -1,43 +1,30 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
-import { withAuthenticator, View, Flex } from '@aws-amplify/ui-react';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import config from './amplifyconfiguration.json';
-import {
-    NavBarHeader2,
-    ProjectCollection
-   } from './ui-components';
+import HomePage from './pages/HomePage';
+import ProjectPage from './pages/ProjectPage';
+//import LoginPage from './pages/LoginPage'; // Assuming you have this page
+//import SettingsPage from './pages/SettingsPage'; // Assuming you have this page
 
-   //import { uploadData } from 'aws-amplify/storage';
+import './App.css';
 
-   //try {
-     //const result = await uploadData({
-       //key: filename,
-       //data: file
-     //}).result;
-     //console.log('Succeeded: ', result);
-   //} catch (error) {
-     //console.log('Error : ', error);
-   //}
-//<ProjectPostCollection  width={'100vw'} />
-   
 Amplify.configure(awsExports);
 Amplify.configure(config);
 
 function App() {
     return (
-        <div className='App'>
-            <NavBarHeader2 width={'100vw'} />
-            <Flex overflow = 'auto'>
-                <View className = 'project-posts'>
-                    <ProjectCollection width={'100vw'} />
-
-                </View>
-            </Flex>
-
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/projects" element={<ProjectPage />} />
+                {/* <Route path="/login" element={<LoginPage />} />
+                <Route path="/settings" element={<SettingsPage />} /> */}
+            </Routes>
+        </Router>
     );
 }
 

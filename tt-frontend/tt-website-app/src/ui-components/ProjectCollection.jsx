@@ -81,6 +81,8 @@ export default function ProjectCollection(props) {
     <div>
       <Collection
         type="list"
+        isSearchable={true}
+        searchPlaceholder="Search..."
         direction="column"
         justifyContent="left"
         itemsPerPage={pageSize}
