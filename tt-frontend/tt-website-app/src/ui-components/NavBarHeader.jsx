@@ -6,12 +6,28 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import Logowithtexttl from "./Logowithtexttl";
 import { Flex, Image, Text } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
 export default function NavBarHeader(props) {
-  const { overrides, ...rest } = props;
+  const { user, overrides, ...rest } = props;
+  const homeOnClick = useNavigateAction({
+    type: "url",
+    url: "https://theoreticaltangle.com/",
+  });
+  const projectsOnClick = useNavigateAction({
+    type: "url",
+    url: "https://theoreticaltangle.com/projects",
+  });
+  const jobsOnClick = useNavigateAction({
+    type: "url",
+    url: "https://theoreticaltangle.com/jobs",
+  });
+  const companyOnClick = useNavigateAction({
+    type: "url",
+    url: "https://theoreticaltangle.com/company",
+  });
   return (
     <Flex
       gap="40px"
@@ -72,8 +88,35 @@ export default function NavBarHeader(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Dashboard"
-          {...getOverrideProps(overrides, "Dashboard")}
+          children="Home"
+          onClick={() => {
+            homeOnClick();
+          }}
+          {...getOverrideProps(overrides, "Home")}
+        ></Text>
+        <Text
+          fontFamily="Inter"
+          fontSize="16px"
+          fontWeight="400"
+          color="rgba(92,102,112,1)"
+          lineHeight="24px"
+          textAlign="left"
+          display="block"
+          direction="column"
+          justifyContent="unset"
+          width="unset"
+          height="unset"
+          gap="unset"
+          alignItems="unset"
+          shrink="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children="Projects"
+          onClick={() => {
+            projectsOnClick();
+          }}
+          {...getOverrideProps(overrides, "Projects")}
         ></Text>
         <Text
           fontFamily="Inter"
@@ -94,6 +137,9 @@ export default function NavBarHeader(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Jobs"
+          onClick={() => {
+            jobsOnClick();
+          }}
           {...getOverrideProps(overrides, "Jobs")}
         ></Text>
         <Text
@@ -114,28 +160,10 @@ export default function NavBarHeader(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Applicants"
-          {...getOverrideProps(overrides, "Applicants")}
-        ></Text>
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(92,102,112,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          width="unset"
-          height="unset"
-          gap="unset"
-          alignItems="unset"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
           children="Company"
+          onClick={() => {
+            companyOnClick();
+          }}
           {...getOverrideProps(overrides, "Company")}
         ></Text>
       </Flex>
@@ -164,7 +192,7 @@ export default function NavBarHeader(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          type="notification"
+          type="settings"
           {...getOverrideProps(overrides, "MyIcon")}
         ></MyIcon>
         <Image
@@ -179,6 +207,7 @@ export default function NavBarHeader(props) {
           borderRadius="160px"
           padding="0px 0px 0px 0px"
           objectFit="cover"
+          src={user?.profilepicture}
           {...getOverrideProps(overrides, "image")}
         ></Image>
       </Flex>

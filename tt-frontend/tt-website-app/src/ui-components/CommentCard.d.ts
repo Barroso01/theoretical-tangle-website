@@ -46,6 +46,8 @@ export declare type CommentCardOverridesProps = {
     MyIcon29766898?: MyIconProps;
 } & EscapeHatchProps;
 export declare type CommentCardProps = React.PropsWithChildren<Partial<FlexProps> & {
+    project?: any;
+} & {
     overrides?: CommentCardOverridesProps | undefined | null;
 }>;
 export default function CommentCard(props: CommentCardProps): React.ReactElement;

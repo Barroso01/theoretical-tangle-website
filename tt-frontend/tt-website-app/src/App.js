@@ -4,6 +4,7 @@ import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import { studioTheme } from "./ui-components";
 import config from './amplifyconfiguration.json';
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
@@ -14,6 +15,8 @@ import './App.css';
 
 Amplify.configure(awsExports);
 Amplify.configure(config);
+
+
 
 function App() {
     return (
@@ -27,6 +30,7 @@ function App() {
         </Router>
     );
 }
+
 
 export default withAuthenticator(App);
 

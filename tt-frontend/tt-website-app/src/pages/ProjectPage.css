@@ -1,0 +1,13 @@
+.navbar-header {
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Ensure it stays above other content */
+    background-color: #fff; /* Or any color that fits your design */
+    width: 100%;
+}
+
+.project-collection-container {
+    /* Styles for the project collection section */
+    padding: 20px;
+    background-color: var(--secondary-color); /* Example color */
+}

@@ -5,7 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { IconProps, ViewProps } from "@aws-amplify/ui-react";
+import { CommentCardProps } from "./CommentCard";
+import { CollectionProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,18 +18,17 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type LogotlOverridesProps = {
-    Logotl?: PrimitiveOverrideProps<ViewProps>;
-    "Logo tl"?: PrimitiveOverrideProps<ViewProps>;
-    logoart?: PrimitiveOverrideProps<IconProps>;
-    "Ellipse 17"?: PrimitiveOverrideProps<IconProps>;
-    "Ellipse 18"?: PrimitiveOverrideProps<IconProps>;
-    "Vector 16"?: PrimitiveOverrideProps<IconProps>;
-    "Vector 17"?: PrimitiveOverrideProps<IconProps>;
+export declare type CommentCardCollectionOverridesProps = {
+    CommentCardCollection?: PrimitiveOverrideProps<CollectionProps>;
+    CommentCard?: CommentCardProps;
 } & EscapeHatchProps;
-export declare type LogotlProps = React.PropsWithChildren<Partial<ViewProps> & {
-    property1?: "colored" | "grayscale";
+export declare type CommentCardCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
+    items?: any[];
+    overrideItems?: (collectionItem: {
+        item: any;
+        index: number;
+    }) => CommentCardProps;
 } & {
-    overrides?: LogotlOverridesProps | undefined | null;
+    overrides?: CommentCardCollectionOverridesProps | undefined | null;
 }>;
-export default function Logotl(props: LogotlProps): React.ReactElement;
+export default function CommentCardCollection(props: CommentCardCollectionProps): React.ReactElement;

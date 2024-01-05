@@ -7,24 +7,28 @@ import { withAuthenticator, View, Flex } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import config from '../amplifyconfiguration.json';
 import {
-    NavBarHeader2,
+    NavBarHeader,
     ProjectCollection,
     MarketingFooter
    } from '../ui-components';
+import './ProjectPage.css'; // Assuming you create a CSS file for custom styles
 
 const ProjectsPage = () => {
     return (
+        
         <div>
-            <Flex direction="column" align="center" justify="center">
-                <View width={'100vw'} height={'100vh'}>
-                    <NavBarHeader2 width={'100vw'}/>
-                    <ProjectCollection />
-                    <MarketingFooter width={'100vw'} /> 
-                </View>
 
-            </Flex>
+            <NavBarHeader className="navbar-header" width={'100vw'} />
 
+            {/* Projects Section */}
+            <div className="project-collection-container">
+            <ProjectCollection width={'100vw'}/>
             </div>
+
+            {/* Footer */}
+            <MarketingFooter width={'100vw'} />
+
+        </div>
     );
 };
 

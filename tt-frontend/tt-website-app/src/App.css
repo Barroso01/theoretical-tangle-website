@@ -17,6 +17,7 @@
   color: white;
 }
 
+
 .App-footer {
   background-color: #282c34;
   color: white;
@@ -81,4 +82,10 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+:root {
+  --primary-color: #0056b3;
+  --secondary-color: #007bff;
+
 }

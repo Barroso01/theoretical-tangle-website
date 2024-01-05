@@ -23,9 +23,9 @@ export declare type NavBarHeader2OverridesProps = {
     "Frame 5"?: PrimitiveOverrideProps<FlexProps>;
     "Logo tl"?: LogotlProps;
     Home?: PrimitiveOverrideProps<TextProps>;
-    Products?: PrimitiveOverrideProps<TextProps>;
-    Pricing?: PrimitiveOverrideProps<TextProps>;
-    Contact?: PrimitiveOverrideProps<TextProps>;
+    Projects?: PrimitiveOverrideProps<TextProps>;
+    Jobs?: PrimitiveOverrideProps<TextProps>;
+    Company?: PrimitiveOverrideProps<TextProps>;
     actions?: PrimitiveOverrideProps<FlexProps>;
     Button39493466?: PrimitiveOverrideProps<ButtonProps>;
     Button39493467?: PrimitiveOverrideProps<ButtonProps>;

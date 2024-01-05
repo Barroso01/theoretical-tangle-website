@@ -1,0 +1,42 @@
+/* HomePage.css */
+.navbar-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+    /* Other styles for your header */
+}
+
+.section {
+    padding: 20px;
+    text-align: center;
+}
+
+.section-header {
+    background-color:var(--primary-color);; /* Replace with your desired color */
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.two-sided-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.section-content {
+    flex: 1;
+}
+
+.section-image {
+    flex: 1;
+    /* Add styles for the image or image container */
+}
+
+/* Specific styles for goals and technology sections */
+.goals-section, .technology-section {
+    background-color: #e0e0e0; /* Different background color */
+}
+
+/* Add any additional specific styling as needed */

@@ -1,3 +1,12 @@
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String
+  location: String
+  email: AWSEmail
+  profilepicture: AWSURL
+  bio: String
+}
+
 type Project @model @auth(rules: [{allow: public}]) {
   id: ID!
   technologyclass: String
@@ -5,5 +14,4 @@ type Project @model @auth(rules: [{allow: public}]) {
   description: String
   pagelink: AWSURL
   coverimage: AWSURL
-}
- 
+} 

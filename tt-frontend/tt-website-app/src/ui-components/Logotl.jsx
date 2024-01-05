@@ -45,7 +45,7 @@ export default function Logotl(props) {
         "Logo tl": {},
         Logotl: {},
       },
-      variantValues: {},
+      variantValues: { property1: "grayscale" },
     },
   ];
   const overrides = mergeVariantsAndOverrides(

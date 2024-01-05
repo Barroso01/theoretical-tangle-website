@@ -21,7 +21,7 @@ export declare type LogowithtexttlOverridesProps = {
     Logowithtexttl?: PrimitiveOverrideProps<ViewProps>;
     "Logo tl"?: PrimitiveOverrideProps<ViewProps>;
     "Tangled Labs"?: PrimitiveOverrideProps<TextProps>;
-    Union?: PrimitiveOverrideProps<IconProps>;
+    logoart?: PrimitiveOverrideProps<IconProps>;
     "Ellipse 17"?: PrimitiveOverrideProps<IconProps>;
     "Ellipse 18"?: PrimitiveOverrideProps<IconProps>;
     "Vector 16"?: PrimitiveOverrideProps<IconProps>;

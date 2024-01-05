@@ -55,6 +55,10 @@ export default function HeroLayout1(props) {
     type: "url",
     url: project?.pagelink,
   });
+  const imageOnClick = useNavigateAction({
+    type: "url",
+    url: project?.pagelink,
+  });
   return (
     <Flex
       gap="0"
@@ -225,6 +229,9 @@ export default function HeroLayout1(props) {
           padding="0px 0px 0px 0px"
           objectFit="unset"
           src={project?.coverimage}
+          onClick={() => {
+            imageOnClick();
+          }}
           {...getOverrideProps(overrides, "image")}
         ></Image>
       </Flex>
