@@ -1,6 +1,74 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getGoals = /* GraphQL */ `
+  query GetGoals($id: ID!) {
+    getGoals(id: $id) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listGoals = /* GraphQL */ `
+  query ListGoals(
+    $filter: ModelGoalsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listGoals(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Name
+        Description
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getTechnology = /* GraphQL */ `
+  query GetTechnology($id: ID!) {
+    getTechnology(id: $id) {
+      id
+      Name
+      Description
+      image
+      activeresearchers
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listTechnologies = /* GraphQL */ `
+  query ListTechnologies(
+    $filter: ModelTechnologyFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTechnologies(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Name
+        Description
+        image
+        activeresearchers
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {

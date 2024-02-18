@@ -45,6 +45,8 @@ export declare type Features2x2OverridesProps = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.29766606"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type Features2x2Props = React.PropsWithChildren<Partial<FlexProps> & {
+    goals?: any;
+} & {
     overrides?: Features2x2OverridesProps | undefined | null;
 }>;
 export default function Features2x2(props: Features2x2Props): React.ReactElement;

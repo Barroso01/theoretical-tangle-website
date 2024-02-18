@@ -1,4 +1,26 @@
 /* HomePage.css */
+@keyframes movingBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .moving-background {
+    background: linear-gradient(-45deg, #cecece, #d6d6d6, #ababab, #e4e4e4);
+    background-size: 400% 400%;
+    animation: movingBackground 5s ease infinite;
+    padding: 120px;
+    border-radius: 10px;
+  }
+
+  .section-text {
+    padding: 20px;
+    background: linear-gradient(-45deg,  #f4f4f4,  #f4f4f4,  #f4f4f4, #f4f4f4);
+    border-radius: 10px; /* Optional for rounded corners */
+    margin: auto; /* Center the text block */
+    max-width: 900px; /* Adjust as needed */
+}
+
 .navbar-header {
     position: sticky;
     top: 0;
@@ -9,13 +31,14 @@
 .section {
     padding: 20px;
     text-align: center;
+    margin-bottom: 20px
 }
 
 .section-header {
-    background-color:var(--primary-color);; /* Replace with your desired color */
     padding: 10px;
     text-align: center;
     font-size: 24px;
+    background: linear-gradient(-45deg, #cecece, #d6d6d6, #ababab, #e4e4e4);
 }
 
 .two-sided-section {
@@ -27,6 +50,9 @@
 
 .section-content {
     flex: 1;
+    background: linear-gradient(-45deg, #d7e5fe, #d6d6d6, #dfdfdf, #e4e4e4);
+    padding: 120px;
+    border-radius: 10px;
 }
 
 .section-image {
@@ -35,8 +61,35 @@
 }
 
 /* Specific styles for goals and technology sections */
-.goals-section, .technology-section {
-    background-color: #e0e0e0; /* Different background color */
+.goals-section {
+    background-color: #ffffff; /* Different background color */
+    justify-content: center;
+    padding: 20px;
 }
 
-/* Add any additional specific styling as needed */
+.technology-section {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center; /* Center the header text */
+}
+
+.feature-technology-container {
+    /* Ensure this container takes the full width and centers its children */
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex; /* Confirm Flex display if not automatically applied by the component */
+}
+
+.text-bubble {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light background */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    margin-bottom: 20px; /* Spacing below the bubble */
+}
+
+.comment-collection {
+    padding-right: 20px; /* Add padding to the right side */
+}
+

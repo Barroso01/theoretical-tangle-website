@@ -1,6 +1,90 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateGoals = /* GraphQL */ `
+  subscription OnCreateGoals($filter: ModelSubscriptionGoalsFilterInput) {
+    onCreateGoals(filter: $filter) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateGoals = /* GraphQL */ `
+  subscription OnUpdateGoals($filter: ModelSubscriptionGoalsFilterInput) {
+    onUpdateGoals(filter: $filter) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteGoals = /* GraphQL */ `
+  subscription OnDeleteGoals($filter: ModelSubscriptionGoalsFilterInput) {
+    onDeleteGoals(filter: $filter) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateTechnology = /* GraphQL */ `
+  subscription OnCreateTechnology(
+    $filter: ModelSubscriptionTechnologyFilterInput
+  ) {
+    onCreateTechnology(filter: $filter) {
+      id
+      Name
+      Description
+      image
+      activeresearchers
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateTechnology = /* GraphQL */ `
+  subscription OnUpdateTechnology(
+    $filter: ModelSubscriptionTechnologyFilterInput
+  ) {
+    onUpdateTechnology(filter: $filter) {
+      id
+      Name
+      Description
+      image
+      activeresearchers
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteTechnology = /* GraphQL */ `
+  subscription OnDeleteTechnology(
+    $filter: ModelSubscriptionTechnologyFilterInput
+  ) {
+    onDeleteTechnology(filter: $filter) {
+      id
+      Name
+      Description
+      image
+      activeresearchers
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
     onCreateUser(filter: $filter) {

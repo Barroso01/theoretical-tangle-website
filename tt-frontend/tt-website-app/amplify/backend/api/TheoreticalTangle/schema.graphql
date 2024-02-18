@@ -1,3 +1,17 @@
+type Goals @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Name: String
+  Description: String
+}
+
+type Technology @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Name: String
+  Description: String
+  image: AWSURL
+  activeresearchers: Int
+}
+
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String
@@ -14,4 +28,5 @@ type Project @model @auth(rules: [{allow: public}]) {
   description: String
   pagelink: AWSURL
   coverimage: AWSURL
-} 
+}
+ 

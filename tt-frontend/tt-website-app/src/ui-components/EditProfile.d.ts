@@ -31,9 +31,12 @@ export declare type EditProfileOverridesProps = {
     TextField29766922?: PrimitiveOverrideProps<TextFieldProps>;
     TextField29766923?: PrimitiveOverrideProps<TextFieldProps>;
     TextField29766924?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField3914555?: PrimitiveOverrideProps<TextFieldProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type EditProfileProps = React.PropsWithChildren<Partial<FlexProps> & {
+    user?: any;
+} & {
     overrides?: EditProfileOverridesProps | undefined | null;
 }>;
 export default function EditProfile(props: EditProfileProps): React.ReactElement;

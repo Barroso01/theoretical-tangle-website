@@ -8,6 +8,9 @@
 
 .project-collection-container {
     /* Styles for the project collection section */
-    padding: 20px;
-    background-color: var(--secondary-color); /* Example color */
+    padding: 30px;
+    background: linear-gradient(-45deg, #000000, #091b3d, #021022, #001a15);
+    background-size: 400% 400%;
+    animation: movingBackground 3s ease infinite;
+    border-radius: 20px;
 }

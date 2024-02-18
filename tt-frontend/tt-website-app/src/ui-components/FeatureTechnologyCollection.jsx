@@ -6,15 +6,15 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { listTechnologies } from "../graphql/queries";
-import CommentCard from "./CommentCard";
+import { listGoals } from "../graphql/queries";
+import FeatureTechnology from "./FeatureTechnology";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 const nextToken = {};
 const apiCache = {};
 const client = generateClient();
-export default function CommentCardCollection(props) {
+export default function FeatureTechnologyCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasMorePages, setHasMorePages] = React.useState(true);
@@ -55,10 +55,10 @@ export default function CommentCardCollection(props) {
       }
       const result = (
         await client.graphql({
-          query: listTechnologies.replaceAll("__typename", ""),
+          query: listGoals.replaceAll("__typename", ""),
           variables,
         })
-      ).data.listTechnologies;
+      ).data.listGoals;
       newCache.push(...result.items);
       newNext = result.nextToken;
     }
@@ -80,13 +80,16 @@ export default function CommentCardCollection(props) {
   return (
     <div>
       <Collection
-        type="list"
-        direction="column"
-        justifyContent="left"
+        type="grid"
+        searchPlaceholder="Search..."
+        templateColumns="1fr 1fr"
+        autoFlow="row"
+        alignItems="stretch"
+        justifyContent="stretch"
         itemsPerPage={pageSize}
         isPaginated={!isApiPagination && isPaginated}
         items={itemsProp || (loading ? new Array(pageSize).fill({}) : items)}
-        {...getOverrideProps(overrides, "CommentCardCollection")}
+        {...getOverrideProps(overrides, "FeatureTechnologyCollection")}
         {...rest}
       >
         {(item, index) => {
@@ -94,11 +97,11 @@ export default function CommentCardCollection(props) {
             return <Placeholder key={index} size="large" />;
           }
           return (
-            <CommentCard
-              technologies={item}
+            <FeatureTechnology
+              goals={item}
               key={item.id}
               {...(overrideItems && overrideItems({ item, index }))}
-            ></CommentCard>
+            ></FeatureTechnology>
           );
         }}
       </Collection>

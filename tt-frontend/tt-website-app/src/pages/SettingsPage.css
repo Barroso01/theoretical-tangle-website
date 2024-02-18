@@ -1,0 +1,31 @@
+.settings-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff; /* White background */
+}
+
+.settings-content, .settings-form {
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
+
+.settings-content {
+    flex: 1; /* Reduced size for sidebar */
+    max-width: 30%; /* Limiting the maximum width */
+    /* Remaining styles */
+}
+
+.settings-form {
+    /* Styles for the user update form */
+    flex: 2; /* Increased size for form */
+    max-width: 70%; /* Or any appropriate width */
+    margin: auto; /* Center the form */
+    background-color: #fff; /* Slightly off-white background for the form */
+    padding: 20px;
+    border-radius: 8px; /* Optional: Rounded corners */
+}
+
+/* You can add more specific styles as needed */

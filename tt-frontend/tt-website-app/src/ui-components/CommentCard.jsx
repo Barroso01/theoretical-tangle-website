@@ -10,7 +10,7 @@ import { getOverrideProps } from "./utils";
 import MyIcon from "./MyIcon";
 import { Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function CommentCard(props) {
-  const { project, overrides, ...rest } = props;
+  const { technologies, overrides, ...rest } = props;
   return (
     <Flex
       gap="16px"
@@ -36,6 +36,7 @@ export default function CommentCard(props) {
         alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
+        aria-label=""
         {...getOverrideProps(overrides, "Liked")}
       >
         <Flex
@@ -82,7 +83,7 @@ export default function CommentCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={project?.technologyclass}
+            children={technologies?.technologyclass}
             {...getOverrideProps(overrides, "Danny liked this")}
           ></Text>
         </Flex>
@@ -112,7 +113,7 @@ export default function CommentCard(props) {
           borderRadius="64px"
           padding="0px 0px 0px 0px"
           objectFit="cover"
-          src={project?.coverimage}
+          src={technologies?.image}
           {...getOverrideProps(overrides, "image")}
         ></Image>
         <Flex
@@ -173,7 +174,7 @@ export default function CommentCard(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children={project?.name}
+                children={technologies?.Name}
                 {...getOverrideProps(overrides, "Scott")}
               ></Text>
             </Flex>
@@ -227,7 +228,7 @@ export default function CommentCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={project?.description}
+            children={technologies?.Description}
             {...getOverrideProps(
               overrides,
               "\u201CLorem ipsum dolor sit amet, consectetur adipiscing elit. \u201D"

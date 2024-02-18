@@ -1,0 +1,43 @@
+/* LoginPage.css */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-form, .login-branding {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-form main {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff; /* Adjust the background color as needed */
+    border-radius: 10px; /* Optional: for rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: for a subtle shadow */
+    max-width: 400px; /* Adjust as needed */
+    width: 100%;
+}
+
+.login-form main h1,
+.login-form main p,
+.login-form main img,
+.login-form main button {
+    margin-bottom: 15px; /* Adds vertical spacing */
+}
+
+.login-branding {
+    background-color: #f0f0f0; /* Example color */
+    text-align: center;
+}
+
+/* Additional styling for the branding side */
+.login-branding h1 {
+    margin-bottom: 15px;
+}
+

@@ -1,6 +1,102 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createGoals = /* GraphQL */ `
+  mutation CreateGoals(
+    $input: CreateGoalsInput!
+    $condition: ModelGoalsConditionInput
+  ) {
+    createGoals(input: $input, condition: $condition) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateGoals = /* GraphQL */ `
+  mutation UpdateGoals(
+    $input: UpdateGoalsInput!
+    $condition: ModelGoalsConditionInput
+  ) {
+    updateGoals(input: $input, condition: $condition) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteGoals = /* GraphQL */ `
+  mutation DeleteGoals(
+    $input: DeleteGoalsInput!
+    $condition: ModelGoalsConditionInput
+  ) {
+    deleteGoals(input: $input, condition: $condition) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createTechnology = /* GraphQL */ `
+  mutation CreateTechnology(
+    $input: CreateTechnologyInput!
+    $condition: ModelTechnologyConditionInput
+  ) {
+    createTechnology(input: $input, condition: $condition) {
+      id
+      Name
+      Description
+      image
+      activeresearchers
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateTechnology = /* GraphQL */ `
+  mutation UpdateTechnology(
+    $input: UpdateTechnologyInput!
+    $condition: ModelTechnologyConditionInput
+  ) {
+    updateTechnology(input: $input, condition: $condition) {
+      id
+      Name
+      Description
+      image
+      activeresearchers
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteTechnology = /* GraphQL */ `
+  mutation DeleteTechnology(
+    $input: DeleteTechnologyInput!
+    $condition: ModelTechnologyConditionInput
+  ) {
+    deleteTechnology(input: $input, condition: $condition) {
+      id
+      Name
+      Description
+      image
+      activeresearchers
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!

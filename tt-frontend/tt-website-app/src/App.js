@@ -8,8 +8,8 @@ import { studioTheme } from "./ui-components";
 import config from './amplifyconfiguration.json';
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
-//import LoginPage from './pages/LoginPage'; // Assuming you have this page
-//import SettingsPage from './pages/SettingsPage'; // Assuming you have this page
+import SettingsPage from './pages/SettingsPage'; 
+import LoginPage from './pages/LoginPage'; 
 
 import './App.css';
 
@@ -24,8 +24,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/projects" element={<ProjectPage />} />
-                {/* <Route path="/login" element={<LoginPage />} />
-                <Route path="/settings" element={<SettingsPage />} /> */}
+                <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/login" element={<LoginPage />} />
             </Routes>
         </Router>
     );

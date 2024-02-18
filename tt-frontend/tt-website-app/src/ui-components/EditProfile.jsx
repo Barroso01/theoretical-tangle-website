@@ -6,11 +6,50 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { useState } from "react";
+import { generateClient } from "aws-amplify/api";
+import { updateUser } from "../graphql/mutations";
 import { getOverrideProps } from "./utils";
 import MyIcon from "./MyIcon";
 import { Button, Flex, Image, Text, TextField } from "@aws-amplify/ui-react";
+const client = generateClient();
 export default function EditProfile(props) {
-  const { overrides, ...rest } = props;
+  const { user, overrides, ...rest } = props;
+  const [
+    textFieldTwoNineSevenSixSixNineTwoTwoValue,
+    setTextFieldTwoNineSevenSixSixNineTwoTwoValue,
+  ] = useState("");
+  const [
+    textFieldTwoNineSevenSixSixNineTwoThreeValue,
+    setTextFieldTwoNineSevenSixSixNineTwoThreeValue,
+  ] = useState("");
+  const [
+    textFieldTwoNineSevenSixSixNineTwoFourValue,
+    setTextFieldTwoNineSevenSixSixNineTwoFourValue,
+  ] = useState("");
+  const uploadNewImageOnClick = async () => {
+    await client.graphql({
+      query: updateUser.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          id: user?.profilepicture,
+        },
+      },
+    });
+  };
+  const buttonOnClick = async () => {
+    await client.graphql({
+      query: updateUser.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          username: textFieldTwoNineSevenSixSixNineTwoTwoValue,
+          location: textFieldTwoNineSevenSixSixNineTwoThreeValue,
+          email: textFieldTwoNineSevenSixSixNineTwoFourValue,
+          id: user?.username,
+        },
+      },
+    });
+  };
   return (
     <Flex
       gap="16px"
@@ -112,6 +151,7 @@ export default function EditProfile(props) {
             borderRadius="160px"
             padding="0px 0px 0px 0px"
             objectFit="cover"
+            src={user?.profilepicture}
             {...getOverrideProps(overrides, "image")}
           ></Image>
           <Text
@@ -134,6 +174,9 @@ export default function EditProfile(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children="Upload New Image"
+            onClick={() => {
+              uploadNewImageOnClick();
+            }}
             {...getOverrideProps(overrides, "Upload New Image")}
           ></Text>
         </Flex>
@@ -153,41 +196,70 @@ export default function EditProfile(props) {
           <TextField
             width="unset"
             height="unset"
-            label="Full name"
-            placeholder="John Doe"
+            label="Username"
+            placeholder={user?.username}
             shrink="0"
             alignSelf="stretch"
             size="default"
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldTwoNineSevenSixSixNineTwoTwoValue}
+            onChange={(event) => {
+              setTextFieldTwoNineSevenSixSixNineTwoTwoValue(event.target.value);
+            }}
             {...getOverrideProps(overrides, "TextField29766922")}
           ></TextField>
           <TextField
             width="unset"
             height="unset"
             label="Location"
-            placeholder="Seattle, WA"
+            placeholder={user?.location}
             shrink="0"
             alignSelf="stretch"
             size="default"
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldTwoNineSevenSixSixNineTwoThreeValue}
+            onChange={(event) => {
+              setTextFieldTwoNineSevenSixSixNineTwoThreeValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField29766923")}
           ></TextField>
           <TextField
             width="unset"
             height="unset"
             label="Email"
-            placeholder="john.doe@awsamplify.com"
+            placeholder={user?.email}
             shrink="0"
             alignSelf="stretch"
             size="default"
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldTwoNineSevenSixSixNineTwoFourValue}
+            onChange={(event) => {
+              setTextFieldTwoNineSevenSixSixNineTwoFourValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField29766924")}
+          ></TextField>
+          <TextField
+            width="unset"
+            height="unset"
+            label="Bio"
+            placeholder={user?.bio}
+            shrink="0"
+            alignSelf="stretch"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            {...getOverrideProps(overrides, "TextField3914555")}
           ></TextField>
         </Flex>
         <Button
@@ -198,6 +270,9 @@ export default function EditProfile(props) {
           isDisabled={false}
           variation="primary"
           children="Save"
+          onClick={() => {
+            buttonOnClick();
+          }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
       </Flex>

@@ -10,7 +10,7 @@ import { getOverrideProps } from "./utils";
 import MyIcon from "./MyIcon";
 import { Flex, Text } from "@aws-amplify/ui-react";
 export default function Features2x2(props) {
-  const { overrides, ...rest } = props;
+  const { goals, overrides, ...rest } = props;
   return (
     <Flex
       gap="0"

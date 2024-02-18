@@ -48,10 +48,7 @@ export default function Logowithtexttl(props) {
             },
           ],
         },
-        "Logo tl": {
-          top: "calc(50% - 15px - 0px)",
-          left: "calc(50% - 81px - 0px)",
-        },
+        "Logo tl": {},
         Logowithtexttl: {},
       },
       variantValues: { property1: "grayscale" },
@@ -82,7 +79,7 @@ export default function Logowithtexttl(props) {
         alignItems="unset"
         justifyContent="unset"
         position="absolute"
-        top="0px"
+        top="calc(50% - 15px - 0px)"
         left="0px"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Logo tl")}
