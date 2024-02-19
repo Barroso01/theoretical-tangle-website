@@ -9,8 +9,8 @@
 .project-collection-container {
     /* Styles for the project collection section */
     padding: 30px;
-    background: linear-gradient(-45deg, #000000, #091b3d, #021022, #001a15);
-    background-size: 400% 400%;
-    animation: movingBackground 3s ease infinite;
+    background: linear-gradient(-45deg, hsl(190, 75%, 95%), hsl(190, 100%, 20%),hsl(190, 100%, 15%));
+    background-size: 100% 100%;
+    animation: movingBackground 5s ease infinite;
     border-radius: 20px;
 }

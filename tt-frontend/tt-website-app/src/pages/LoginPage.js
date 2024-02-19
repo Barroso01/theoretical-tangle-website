@@ -27,9 +27,8 @@ const LoginPage = () => {
                 </Authenticator>
             </div>
                 <div className="login-branding">
-                    <h1>Deploy software in your business asap</h1>
-                    <p> </p>
                     <Logotl />
+                    <h1>Deploy software in your business asap</h1>
                 </div>
             </div>
     );

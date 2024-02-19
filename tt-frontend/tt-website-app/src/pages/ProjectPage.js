@@ -1,3 +1,5 @@
+import React from 'react';
+import { withAuthenticator} from '@aws-amplify/ui-react';
 
 import {
     NavBarHeader,
@@ -15,7 +17,7 @@ const ProjectsPage = () => {
 
             {/* Projects Section */}
             <div className="project-collection-container">
-            <ProjectCollection width={'100vw'}/>
+            <ProjectCollection width={'90vw'}/>
             </div>
 
             {/* Footer */}
@@ -25,4 +27,4 @@ const ProjectsPage = () => {
     );
 };
 
-export default ProjectsPage;
+export default withAuthenticator(ProjectsPage);

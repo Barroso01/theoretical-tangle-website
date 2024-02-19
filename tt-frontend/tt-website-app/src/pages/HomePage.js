@@ -32,7 +32,7 @@ const HomePage = () => {
                     <div className="text-bubble">
                     <Logotl />
                     <h1>Research Agenda </h1>
-                    <p>Our current agenda is based on UN objectives but also focused on the implementation of new technologies.</p>
+                    <p>Our current agenda is based on UN objectives and focused on the implementation of new technologies.</p>
                  </div>
             {/* Content for goals */}
             </div>

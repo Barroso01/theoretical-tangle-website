@@ -6,19 +6,22 @@
   }
   
   .moving-background {
-    background: linear-gradient(-45deg, #cecece, #d6d6d6, #ababab, #e4e4e4);
+    background: linear-gradient(-45deg, hsl(190, 75%, 95%), hsl(190, 100%, 20%),hsl(190, 100%, 15%));
     background-size: 400% 400%;
     animation: movingBackground 5s ease infinite;
-    padding: 120px;
+    padding: 20px;
+    padding-top: 30vh;
     border-radius: 10px;
+    height: 100vh;
+    
   }
 
-  .section-text {
+  .section-text { 
     padding: 20px;
-    background: linear-gradient(-45deg,  #f4f4f4,  #f4f4f4,  #f4f4f4, #f4f4f4);
     border-radius: 10px; /* Optional for rounded corners */
     margin: auto; /* Center the text block */
-    max-width: 900px; /* Adjust as needed */
+    max-width: 1000px; /* Adjust as needed */
+    background: linear-gradient(-45deg, hsl(190, 75%, 95%), #f4f4f4)
 }
 
 .navbar-header {
@@ -38,7 +41,7 @@
     padding: 10px;
     text-align: center;
     font-size: 24px;
-    background: linear-gradient(-45deg, #cecece, #d6d6d6, #ababab, #e4e4e4);
+    background: linear-gradient(-45deg, hsl(190, 100%, 15%), hsl(190, 50%, 50%), hsl(190, 75%, 95%), hsl(190, 50%, 50%), hsl(190, 100%, 15%));
 }
 
 .two-sided-section {
