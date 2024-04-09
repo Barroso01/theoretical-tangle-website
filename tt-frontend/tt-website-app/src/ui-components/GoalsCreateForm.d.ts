@@ -24,16 +24,22 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type GoalsCreateFormInputValues = {
     Name?: string;
     Description?: string;
+    image?: string;
+    activeresearchers?: number;
 };
 export declare type GoalsCreateFormValidationValues = {
     Name?: ValidationFunction<string>;
     Description?: ValidationFunction<string>;
+    image?: ValidationFunction<string>;
+    activeresearchers?: ValidationFunction<number>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type GoalsCreateFormOverridesProps = {
     GoalsCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     Name?: PrimitiveOverrideProps<TextFieldProps>;
     Description?: PrimitiveOverrideProps<TextFieldProps>;
+    image?: PrimitiveOverrideProps<TextFieldProps>;
+    activeresearchers?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type GoalsCreateFormProps = React.PropsWithChildren<{
     overrides?: GoalsCreateFormOverridesProps | undefined | null;

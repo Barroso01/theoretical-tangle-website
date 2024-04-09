@@ -2,14 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
-import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import { studioTheme } from "./ui-components";
 import config from './amplifyconfiguration.json';
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
 import SettingsPage from './pages/SettingsPage'; 
-import LoginPage from './pages/LoginPage'; 
+import LoginPage from './pages/LoginPage';
+import MapsPage from './pages/MapsPage'; 
 
 import './App.css';
 
@@ -26,13 +25,14 @@ function App() {
                 <Route path="/projects" element={<ProjectPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/maps" element={<MapsPage />} />
             </Routes>
         </Router>
     );
 }
 
 
-export default withAuthenticator(App);
+export default App;
 
 
 // Authentication

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { withAuthenticator, Flex} from '@aws-amplify/ui-react';
+import { withAuthenticator, Flex, useAuthenticator} from '@aws-amplify/ui-react';
 import {
     NavBarHeader,
     CommentCardCollection,
@@ -12,9 +12,12 @@ import './HomePage.css'; // Assuming you create a CSS file for custom styles
 
 
 const HomePage = () => {
-    return (
+        
+    const { user } = useAuthenticator((context) => [context.user]);
+        
+        return (
         <div>
-            <NavBarHeader className="navbar-header" width={'100vw'} />
+            <NavBarHeader className="navbar-header" width={'100vw'} user={user} />
 
 
             {/* General Idea Section */}

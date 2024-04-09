@@ -6,15 +6,15 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { listGoals } from "../graphql/queries";
-import CommentCard from "./CommentCard";
+import { listPredios } from "../graphql/queries";
+import ReviewCard from "./ReviewCard";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 const nextToken = {};
 const apiCache = {};
 const client = generateClient();
-export default function CommentCardCollection(props) {
+export default function PlaceOverviewCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasMorePages, setHasMorePages] = React.useState(true);
@@ -55,10 +55,10 @@ export default function CommentCardCollection(props) {
       }
       const result = (
         await client.graphql({
-          query: listGoals.replaceAll("__typename", ""),
+          query: listPredios.replaceAll("__typename", ""),
           variables,
         })
-      ).data.listGoals;
+      ).data.listPredios;
       newCache.push(...result.items);
       newNext = result.nextToken;
     }
@@ -81,12 +81,14 @@ export default function CommentCardCollection(props) {
     <div>
       <Collection
         type="list"
+        isSearchable={true}
+        searchPlaceholder="Search..."
         direction="column"
-        justifyContent="left"
+        justifyContent="stretch"
         itemsPerPage={pageSize}
         isPaginated={!isApiPagination && isPaginated}
         items={itemsProp || (loading ? new Array(pageSize).fill({}) : items)}
-        {...getOverrideProps(overrides, "CommentCardCollection")}
+        {...getOverrideProps(overrides, "PlaceOverviewCollection")}
         {...rest}
       >
         {(item, index) => {
@@ -94,11 +96,11 @@ export default function CommentCardCollection(props) {
             return <Placeholder key={index} size="large" />;
           }
           return (
-            <CommentCard
-              Goal={item}
+            <ReviewCard
+              predio={item}
               key={item.id}
               {...(overrideItems && overrideItems({ item, index }))}
-            ></CommentCard>
+            ></ReviewCard>
           );
         }}
       </Collection>

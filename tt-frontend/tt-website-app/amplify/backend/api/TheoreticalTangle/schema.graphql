@@ -1,10 +1,20 @@
-type Goals @model @auth(rules: [{allow: public}]) {
+type Predio @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  description: String
+  address: String
+  lat: Float
+  long: Float
+  coverimage: AWSURL
+}
+
+type Tech @model @auth(rules: [{allow: public}]) {
   id: ID!
   Name: String
   Description: String
 }
 
-type Technology @model @auth(rules: [{allow: public}]) {
+type Goals @model @auth(rules: [{allow: public}]) {
   id: ID!
   Name: String
   Description: String
@@ -28,4 +38,5 @@ type Project @model @auth(rules: [{allow: public}]) {
   description: String
   pagelink: AWSURL
   coverimage: AWSURL
-} 
+}
+ 

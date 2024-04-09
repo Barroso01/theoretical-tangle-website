@@ -1,9 +1,49 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getGoals = /* GraphQL */ `
-  query GetGoals($id: ID!) {
-    getGoals(id: $id) {
+export const getPredio = /* GraphQL */ `
+  query GetPredio($id: ID!) {
+    getPredio(id: $id) {
+      id
+      name
+      description
+      address
+      lat
+      long
+      coverimage
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listPredios = /* GraphQL */ `
+  query ListPredios(
+    $filter: ModelPredioFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPredios(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        address
+        lat
+        long
+        coverimage
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getTech = /* GraphQL */ `
+  query GetTech($id: ID!) {
+    getTech(id: $id) {
       id
       Name
       Description
@@ -13,13 +53,13 @@ export const getGoals = /* GraphQL */ `
     }
   }
 `;
-export const listGoals = /* GraphQL */ `
-  query ListGoals(
-    $filter: ModelGoalsFilterInput
+export const listTeches = /* GraphQL */ `
+  query ListTeches(
+    $filter: ModelTechFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listGoals(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTeches(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         Name
@@ -33,9 +73,9 @@ export const listGoals = /* GraphQL */ `
     }
   }
 `;
-export const getTechnology = /* GraphQL */ `
-  query GetTechnology($id: ID!) {
-    getTechnology(id: $id) {
+export const getGoals = /* GraphQL */ `
+  query GetGoals($id: ID!) {
+    getGoals(id: $id) {
       id
       Name
       Description
@@ -47,13 +87,13 @@ export const getTechnology = /* GraphQL */ `
     }
   }
 `;
-export const listTechnologies = /* GraphQL */ `
-  query ListTechnologies(
-    $filter: ModelTechnologyFilterInput
+export const listGoals = /* GraphQL */ `
+  query ListGoals(
+    $filter: ModelGoalsFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTechnologies(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listGoals(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         Name

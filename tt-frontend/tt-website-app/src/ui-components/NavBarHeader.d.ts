@@ -33,6 +33,7 @@ export declare type NavBarHeaderOverridesProps = {
 } & EscapeHatchProps;
 export declare type NavBarHeaderProps = React.PropsWithChildren<Partial<FlexProps> & {
     user?: any;
+    click?: React.ReactNode;
 } & {
     overrides?: NavBarHeaderOverridesProps | undefined | null;
 }>;

@@ -54,6 +54,8 @@ export declare type ProductDetailOverridesProps = {
     Button29766972?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type ProductDetailProps = React.PropsWithChildren<Partial<FlexProps> & {
+    predio?: any;
+} & {
     overrides?: ProductDetailOverridesProps | undefined | null;
 }>;
 export default function ProductDetail(props: ProductDetailProps): React.ReactElement;

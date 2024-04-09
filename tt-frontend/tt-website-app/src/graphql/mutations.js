@@ -1,6 +1,108 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createPredio = /* GraphQL */ `
+  mutation CreatePredio(
+    $input: CreatePredioInput!
+    $condition: ModelPredioConditionInput
+  ) {
+    createPredio(input: $input, condition: $condition) {
+      id
+      name
+      description
+      address
+      lat
+      long
+      coverimage
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updatePredio = /* GraphQL */ `
+  mutation UpdatePredio(
+    $input: UpdatePredioInput!
+    $condition: ModelPredioConditionInput
+  ) {
+    updatePredio(input: $input, condition: $condition) {
+      id
+      name
+      description
+      address
+      lat
+      long
+      coverimage
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deletePredio = /* GraphQL */ `
+  mutation DeletePredio(
+    $input: DeletePredioInput!
+    $condition: ModelPredioConditionInput
+  ) {
+    deletePredio(input: $input, condition: $condition) {
+      id
+      name
+      description
+      address
+      lat
+      long
+      coverimage
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createTech = /* GraphQL */ `
+  mutation CreateTech(
+    $input: CreateTechInput!
+    $condition: ModelTechConditionInput
+  ) {
+    createTech(input: $input, condition: $condition) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateTech = /* GraphQL */ `
+  mutation UpdateTech(
+    $input: UpdateTechInput!
+    $condition: ModelTechConditionInput
+  ) {
+    updateTech(input: $input, condition: $condition) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteTech = /* GraphQL */ `
+  mutation DeleteTech(
+    $input: DeleteTechInput!
+    $condition: ModelTechConditionInput
+  ) {
+    deleteTech(input: $input, condition: $condition) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createGoals = /* GraphQL */ `
   mutation CreateGoals(
     $input: CreateGoalsInput!
@@ -10,6 +112,8 @@ export const createGoals = /* GraphQL */ `
       id
       Name
       Description
+      image
+      activeresearchers
       createdAt
       updatedAt
       __typename
@@ -25,6 +129,8 @@ export const updateGoals = /* GraphQL */ `
       id
       Name
       Description
+      image
+      activeresearchers
       createdAt
       updatedAt
       __typename
@@ -37,55 +143,6 @@ export const deleteGoals = /* GraphQL */ `
     $condition: ModelGoalsConditionInput
   ) {
     deleteGoals(input: $input, condition: $condition) {
-      id
-      Name
-      Description
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createTechnology = /* GraphQL */ `
-  mutation CreateTechnology(
-    $input: CreateTechnologyInput!
-    $condition: ModelTechnologyConditionInput
-  ) {
-    createTechnology(input: $input, condition: $condition) {
-      id
-      Name
-      Description
-      image
-      activeresearchers
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateTechnology = /* GraphQL */ `
-  mutation UpdateTechnology(
-    $input: UpdateTechnologyInput!
-    $condition: ModelTechnologyConditionInput
-  ) {
-    updateTechnology(input: $input, condition: $condition) {
-      id
-      Name
-      Description
-      image
-      activeresearchers
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteTechnology = /* GraphQL */ `
-  mutation DeleteTechnology(
-    $input: DeleteTechnologyInput!
-    $condition: ModelTechnologyConditionInput
-  ) {
-    deleteTechnology(input: $input, condition: $condition) {
       id
       Name
       Description

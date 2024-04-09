@@ -16,7 +16,7 @@ import {
   Text,
 } from "@aws-amplify/ui-react";
 export default function ProductDetail(props) {
-  const { overrides, ...rest } = props;
+  const { predio, overrides, ...rest } = props;
   return (
     <Flex
       gap="24px"
@@ -56,6 +56,7 @@ export default function ProductDetail(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           objectFit="cover"
+          src={predio?.coverimage}
           {...getOverrideProps(overrides, "image")}
         ></Image>
         <Flex
@@ -103,7 +104,7 @@ export default function ProductDetail(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="Basic Tee 6-Pack"
+              children={predio?.name}
               {...getOverrideProps(overrides, "Basic Tee 6-Pack")}
             ></Text>
             <Text
@@ -126,7 +127,7 @@ export default function ProductDetail(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate velit esse cillum dolore eu fugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate velit esse cillum dolore eu fugiat."
+              children={predio?.description}
               {...getOverrideProps(
                 overrides,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate velit esse cillum dolore eu fugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate velit esse cillum dolore eu fugiat."
@@ -197,7 +198,7 @@ export default function ProductDetail(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="    Hand cut and sewn locally&#xA;    Dyed with our proprietary colors&#xA;    Pre-washed & pre-shrunk&#xA;    Ultra-soft 100% cotton"
+              children={`${'"latitude:"'}${predio?.lat}`}
               {...getOverrideProps(
                 overrides,
                 "Hand cut and sewn locally Dyed with our proprietary colors Pre-washed & pre-shrunk Ultra-soft 100% cotton"

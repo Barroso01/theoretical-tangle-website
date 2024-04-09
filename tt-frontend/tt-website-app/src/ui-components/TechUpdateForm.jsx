@@ -9,13 +9,13 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { getGoals } from "../graphql/queries";
-import { updateGoals } from "../graphql/mutations";
+import { getTech } from "../graphql/queries";
+import { updateTech } from "../graphql/mutations";
 const client = generateClient();
-export default function GoalsUpdateForm(props) {
+export default function TechUpdateForm(props) {
   const {
     id: idProp,
-    goals: goalsModelProp,
+    tech: techModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -27,49 +27,39 @@ export default function GoalsUpdateForm(props) {
   const initialValues = {
     Name: "",
     Description: "",
-    image: "",
-    activeresearchers: "",
   };
   const [Name, setName] = React.useState(initialValues.Name);
   const [Description, setDescription] = React.useState(
     initialValues.Description
   );
-  const [image, setImage] = React.useState(initialValues.image);
-  const [activeresearchers, setActiveresearchers] = React.useState(
-    initialValues.activeresearchers
-  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = goalsRecord
-      ? { ...initialValues, ...goalsRecord }
+    const cleanValues = techRecord
+      ? { ...initialValues, ...techRecord }
       : initialValues;
     setName(cleanValues.Name);
     setDescription(cleanValues.Description);
-    setImage(cleanValues.image);
-    setActiveresearchers(cleanValues.activeresearchers);
     setErrors({});
   };
-  const [goalsRecord, setGoalsRecord] = React.useState(goalsModelProp);
+  const [techRecord, setTechRecord] = React.useState(techModelProp);
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
         ? (
             await client.graphql({
-              query: getGoals.replaceAll("__typename", ""),
+              query: getTech.replaceAll("__typename", ""),
               variables: { id: idProp },
             })
-          )?.data?.getGoals
-        : goalsModelProp;
-      setGoalsRecord(record);
+          )?.data?.getTech
+        : techModelProp;
+      setTechRecord(record);
     };
     queryData();
-  }, [idProp, goalsModelProp]);
-  React.useEffect(resetStateValues, [goalsRecord]);
+  }, [idProp, techModelProp]);
+  React.useEffect(resetStateValues, [techRecord]);
   const validations = {
     Name: [],
     Description: [],
-    image: [{ type: "URL" }],
-    activeresearchers: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -99,8 +89,6 @@ export default function GoalsUpdateForm(props) {
         let modelFields = {
           Name: Name ?? null,
           Description: Description ?? null,
-          image: image ?? null,
-          activeresearchers: activeresearchers ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -131,10 +119,10 @@ export default function GoalsUpdateForm(props) {
             }
           });
           await client.graphql({
-            query: updateGoals.replaceAll("__typename", ""),
+            query: updateTech.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: goalsRecord.id,
+                id: techRecord.id,
                 ...modelFields,
               },
             },
@@ -149,7 +137,7 @@ export default function GoalsUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "GoalsUpdateForm")}
+      {...getOverrideProps(overrides, "TechUpdateForm")}
       {...rest}
     >
       <TextField
@@ -163,8 +151,6 @@ export default function GoalsUpdateForm(props) {
             const modelFields = {
               Name: value,
               Description,
-              image,
-              activeresearchers,
             };
             const result = onChange(modelFields);
             value = result?.Name ?? value;
@@ -190,8 +176,6 @@ export default function GoalsUpdateForm(props) {
             const modelFields = {
               Name,
               Description: value,
-              image,
-              activeresearchers,
             };
             const result = onChange(modelFields);
             value = result?.Description ?? value;
@@ -206,66 +190,6 @@ export default function GoalsUpdateForm(props) {
         hasError={errors.Description?.hasError}
         {...getOverrideProps(overrides, "Description")}
       ></TextField>
-      <TextField
-        label="Image"
-        isRequired={false}
-        isReadOnly={false}
-        value={image}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              Name,
-              Description,
-              image: value,
-              activeresearchers,
-            };
-            const result = onChange(modelFields);
-            value = result?.image ?? value;
-          }
-          if (errors.image?.hasError) {
-            runValidationTasks("image", value);
-          }
-          setImage(value);
-        }}
-        onBlur={() => runValidationTasks("image", image)}
-        errorMessage={errors.image?.errorMessage}
-        hasError={errors.image?.hasError}
-        {...getOverrideProps(overrides, "image")}
-      ></TextField>
-      <TextField
-        label="Activeresearchers"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={activeresearchers}
-        onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              Name,
-              Description,
-              image,
-              activeresearchers: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.activeresearchers ?? value;
-          }
-          if (errors.activeresearchers?.hasError) {
-            runValidationTasks("activeresearchers", value);
-          }
-          setActiveresearchers(value);
-        }}
-        onBlur={() =>
-          runValidationTasks("activeresearchers", activeresearchers)
-        }
-        errorMessage={errors.activeresearchers?.errorMessage}
-        hasError={errors.activeresearchers?.hasError}
-        {...getOverrideProps(overrides, "activeresearchers")}
-      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
@@ -277,7 +201,7 @@ export default function GoalsUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || goalsModelProp)}
+          isDisabled={!(idProp || techModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -289,7 +213,7 @@ export default function GoalsUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || goalsModelProp) ||
+              !(idProp || techModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

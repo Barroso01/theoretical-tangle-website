@@ -10,7 +10,7 @@ import { getOverrideProps } from "./utils";
 import MyIcon from "./MyIcon";
 import { Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function CommentCard(props) {
-  const { technologies, overrides, ...rest } = props;
+  const { Goal, overrides, ...rest } = props;
   return (
     <Flex
       gap="16px"
@@ -83,7 +83,7 @@ export default function CommentCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={technologies?.technologyclass}
+            children={Goal?.technologyclass}
             {...getOverrideProps(overrides, "Danny liked this")}
           ></Text>
         </Flex>
@@ -113,7 +113,7 @@ export default function CommentCard(props) {
           borderRadius="64px"
           padding="0px 0px 0px 0px"
           objectFit="cover"
-          src={technologies?.image}
+          src={Goal?.image}
           {...getOverrideProps(overrides, "image")}
         ></Image>
         <Flex
@@ -174,7 +174,7 @@ export default function CommentCard(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children={technologies?.Name}
+                children={Goal?.Name}
                 {...getOverrideProps(overrides, "Scott")}
               ></Text>
             </Flex>
@@ -228,7 +228,7 @@ export default function CommentCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={technologies?.Description}
+            children={Goal?.Description}
             {...getOverrideProps(
               overrides,
               "\u201CLorem ipsum dolor sit amet, consectetur adipiscing elit. \u201D"
@@ -392,7 +392,7 @@ export default function CommentCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="99"
+            children={Goal?.activeresearchers}
             {...getOverrideProps(overrides, "9929766897")}
           ></Text>
         </Flex>

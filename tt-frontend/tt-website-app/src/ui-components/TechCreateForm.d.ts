@@ -21,35 +21,28 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type GoalsUpdateFormInputValues = {
+export declare type TechCreateFormInputValues = {
     Name?: string;
     Description?: string;
-    image?: string;
-    activeresearchers?: number;
 };
-export declare type GoalsUpdateFormValidationValues = {
+export declare type TechCreateFormValidationValues = {
     Name?: ValidationFunction<string>;
     Description?: ValidationFunction<string>;
-    image?: ValidationFunction<string>;
-    activeresearchers?: ValidationFunction<number>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type GoalsUpdateFormOverridesProps = {
-    GoalsUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+export declare type TechCreateFormOverridesProps = {
+    TechCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     Name?: PrimitiveOverrideProps<TextFieldProps>;
     Description?: PrimitiveOverrideProps<TextFieldProps>;
-    image?: PrimitiveOverrideProps<TextFieldProps>;
-    activeresearchers?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type GoalsUpdateFormProps = React.PropsWithChildren<{
-    overrides?: GoalsUpdateFormOverridesProps | undefined | null;
+export declare type TechCreateFormProps = React.PropsWithChildren<{
+    overrides?: TechCreateFormOverridesProps | undefined | null;
 } & {
-    id?: string;
-    goals?: any;
-    onSubmit?: (fields: GoalsUpdateFormInputValues) => GoalsUpdateFormInputValues;
-    onSuccess?: (fields: GoalsUpdateFormInputValues) => void;
-    onError?: (fields: GoalsUpdateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: GoalsUpdateFormInputValues) => GoalsUpdateFormInputValues;
-    onValidate?: GoalsUpdateFormValidationValues;
+    clearOnSuccess?: boolean;
+    onSubmit?: (fields: TechCreateFormInputValues) => TechCreateFormInputValues;
+    onSuccess?: (fields: TechCreateFormInputValues) => void;
+    onError?: (fields: TechCreateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: TechCreateFormInputValues) => TechCreateFormInputValues;
+    onValidate?: TechCreateFormValidationValues;
 } & React.CSSProperties>;
-export default function GoalsUpdateForm(props: GoalsUpdateFormProps): React.ReactElement;
+export default function TechCreateForm(props: TechCreateFormProps): React.ReactElement;

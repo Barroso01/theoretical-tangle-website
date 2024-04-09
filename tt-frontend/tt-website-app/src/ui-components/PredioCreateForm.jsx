@@ -9,9 +9,9 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { createGoals } from "../graphql/mutations";
+import { createPredio } from "../graphql/mutations";
 const client = generateClient();
-export default function GoalsCreateForm(props) {
+export default function PredioCreateForm(props) {
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -23,32 +23,38 @@ export default function GoalsCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    Name: "",
-    Description: "",
-    image: "",
-    activeresearchers: "",
+    name: "",
+    description: "",
+    address: "",
+    lat: "",
+    long: "",
+    coverimage: "",
   };
-  const [Name, setName] = React.useState(initialValues.Name);
-  const [Description, setDescription] = React.useState(
-    initialValues.Description
+  const [name, setName] = React.useState(initialValues.name);
+  const [description, setDescription] = React.useState(
+    initialValues.description
   );
-  const [image, setImage] = React.useState(initialValues.image);
-  const [activeresearchers, setActiveresearchers] = React.useState(
-    initialValues.activeresearchers
-  );
+  const [address, setAddress] = React.useState(initialValues.address);
+  const [lat, setLat] = React.useState(initialValues.lat);
+  const [long, setLong] = React.useState(initialValues.long);
+  const [coverimage, setCoverimage] = React.useState(initialValues.coverimage);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setName(initialValues.Name);
-    setDescription(initialValues.Description);
-    setImage(initialValues.image);
-    setActiveresearchers(initialValues.activeresearchers);
+    setName(initialValues.name);
+    setDescription(initialValues.description);
+    setAddress(initialValues.address);
+    setLat(initialValues.lat);
+    setLong(initialValues.long);
+    setCoverimage(initialValues.coverimage);
     setErrors({});
   };
   const validations = {
-    Name: [],
-    Description: [],
-    image: [{ type: "URL" }],
-    activeresearchers: [],
+    name: [],
+    description: [],
+    address: [],
+    lat: [],
+    long: [],
+    coverimage: [{ type: "URL" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -76,10 +82,12 @@ export default function GoalsCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          Name,
-          Description,
-          image,
-          activeresearchers,
+          name,
+          description,
+          address,
+          lat,
+          long,
+          coverimage,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -110,7 +118,7 @@ export default function GoalsCreateForm(props) {
             }
           });
           await client.graphql({
-            query: createGoals.replaceAll("__typename", ""),
+            query: createPredio.replaceAll("__typename", ""),
             variables: {
               input: {
                 ...modelFields,
@@ -130,122 +138,190 @@ export default function GoalsCreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "GoalsCreateForm")}
+      {...getOverrideProps(overrides, "PredioCreateForm")}
       {...rest}
     >
       <TextField
         label="Name"
         isRequired={false}
         isReadOnly={false}
-        value={Name}
+        value={name}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Name: value,
-              Description,
-              image,
-              activeresearchers,
+              name: value,
+              description,
+              address,
+              lat,
+              long,
+              coverimage,
             };
             const result = onChange(modelFields);
-            value = result?.Name ?? value;
+            value = result?.name ?? value;
           }
-          if (errors.Name?.hasError) {
-            runValidationTasks("Name", value);
+          if (errors.name?.hasError) {
+            runValidationTasks("name", value);
           }
           setName(value);
         }}
-        onBlur={() => runValidationTasks("Name", Name)}
-        errorMessage={errors.Name?.errorMessage}
-        hasError={errors.Name?.hasError}
-        {...getOverrideProps(overrides, "Name")}
+        onBlur={() => runValidationTasks("name", name)}
+        errorMessage={errors.name?.errorMessage}
+        hasError={errors.name?.hasError}
+        {...getOverrideProps(overrides, "name")}
       ></TextField>
       <TextField
         label="Description"
         isRequired={false}
         isReadOnly={false}
-        value={Description}
+        value={description}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Name,
-              Description: value,
-              image,
-              activeresearchers,
+              name,
+              description: value,
+              address,
+              lat,
+              long,
+              coverimage,
             };
             const result = onChange(modelFields);
-            value = result?.Description ?? value;
+            value = result?.description ?? value;
           }
-          if (errors.Description?.hasError) {
-            runValidationTasks("Description", value);
+          if (errors.description?.hasError) {
+            runValidationTasks("description", value);
           }
           setDescription(value);
         }}
-        onBlur={() => runValidationTasks("Description", Description)}
-        errorMessage={errors.Description?.errorMessage}
-        hasError={errors.Description?.hasError}
-        {...getOverrideProps(overrides, "Description")}
+        onBlur={() => runValidationTasks("description", description)}
+        errorMessage={errors.description?.errorMessage}
+        hasError={errors.description?.hasError}
+        {...getOverrideProps(overrides, "description")}
       ></TextField>
       <TextField
-        label="Image"
+        label="Address"
         isRequired={false}
         isReadOnly={false}
-        value={image}
+        value={address}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Name,
-              Description,
-              image: value,
-              activeresearchers,
+              name,
+              description,
+              address: value,
+              lat,
+              long,
+              coverimage,
             };
             const result = onChange(modelFields);
-            value = result?.image ?? value;
+            value = result?.address ?? value;
           }
-          if (errors.image?.hasError) {
-            runValidationTasks("image", value);
+          if (errors.address?.hasError) {
+            runValidationTasks("address", value);
           }
-          setImage(value);
+          setAddress(value);
         }}
-        onBlur={() => runValidationTasks("image", image)}
-        errorMessage={errors.image?.errorMessage}
-        hasError={errors.image?.hasError}
-        {...getOverrideProps(overrides, "image")}
+        onBlur={() => runValidationTasks("address", address)}
+        errorMessage={errors.address?.errorMessage}
+        hasError={errors.address?.hasError}
+        {...getOverrideProps(overrides, "address")}
       ></TextField>
       <TextField
-        label="Activeresearchers"
+        label="Lat"
         isRequired={false}
         isReadOnly={false}
         type="number"
         step="any"
-        value={activeresearchers}
+        value={lat}
         onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
+          let value = isNaN(parseFloat(e.target.value))
             ? e.target.value
-            : parseInt(e.target.value);
+            : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
-              Name,
-              Description,
-              image,
-              activeresearchers: value,
+              name,
+              description,
+              address,
+              lat: value,
+              long,
+              coverimage,
             };
             const result = onChange(modelFields);
-            value = result?.activeresearchers ?? value;
+            value = result?.lat ?? value;
           }
-          if (errors.activeresearchers?.hasError) {
-            runValidationTasks("activeresearchers", value);
+          if (errors.lat?.hasError) {
+            runValidationTasks("lat", value);
           }
-          setActiveresearchers(value);
+          setLat(value);
         }}
-        onBlur={() =>
-          runValidationTasks("activeresearchers", activeresearchers)
-        }
-        errorMessage={errors.activeresearchers?.errorMessage}
-        hasError={errors.activeresearchers?.hasError}
-        {...getOverrideProps(overrides, "activeresearchers")}
+        onBlur={() => runValidationTasks("lat", lat)}
+        errorMessage={errors.lat?.errorMessage}
+        hasError={errors.lat?.hasError}
+        {...getOverrideProps(overrides, "lat")}
+      ></TextField>
+      <TextField
+        label="Long"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={long}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              name,
+              description,
+              address,
+              lat,
+              long: value,
+              coverimage,
+            };
+            const result = onChange(modelFields);
+            value = result?.long ?? value;
+          }
+          if (errors.long?.hasError) {
+            runValidationTasks("long", value);
+          }
+          setLong(value);
+        }}
+        onBlur={() => runValidationTasks("long", long)}
+        errorMessage={errors.long?.errorMessage}
+        hasError={errors.long?.hasError}
+        {...getOverrideProps(overrides, "long")}
+      ></TextField>
+      <TextField
+        label="Coverimage"
+        isRequired={false}
+        isReadOnly={false}
+        value={coverimage}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              description,
+              address,
+              lat,
+              long,
+              coverimage: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.coverimage ?? value;
+          }
+          if (errors.coverimage?.hasError) {
+            runValidationTasks("coverimage", value);
+          }
+          setCoverimage(value);
+        }}
+        onBlur={() => runValidationTasks("coverimage", coverimage)}
+        errorMessage={errors.coverimage?.errorMessage}
+        hasError={errors.coverimage?.hasError}
+        {...getOverrideProps(overrides, "coverimage")}
       ></TextField>
       <Flex
         justifyContent="space-between"

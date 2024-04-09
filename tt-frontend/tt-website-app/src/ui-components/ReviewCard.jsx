@@ -18,7 +18,7 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 export default function ReviewCard(props) {
-  const { overrides, ...rest } = props;
+  const { predio, overrides, ...rest } = props;
   return (
     <Flex
       gap="0"
@@ -43,6 +43,7 @@ export default function ReviewCard(props) {
         position="relative"
         padding="0px 0px 0px 0px"
         objectFit="cover"
+        src={predio?.coverimage}
         {...getOverrideProps(overrides, "image")}
       ></Image>
       <Flex
@@ -107,7 +108,7 @@ export default function ReviewCard(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="Information about this product"
+              children={`${predio?.lat}${","}${predio?.long}`}
               {...getOverrideProps(overrides, "Information about this product")}
             ></Text>
             <View
@@ -171,7 +172,7 @@ export default function ReviewCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Classic Long Sleeve T-Shirt"
+            children={predio?.name}
             {...getOverrideProps(overrides, "Classic Long Sleeve T-Shirt")}
           ></Text>
         </Flex>
@@ -216,7 +217,7 @@ export default function ReviewCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Information about this product."
+            children={predio?.description}
             {...getOverrideProps(
               overrides,
               "Information about this product.29766836"
@@ -242,7 +243,7 @@ export default function ReviewCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Information about this product."
+            children={predio?.address}
             {...getOverrideProps(
               overrides,
               "Information about this product.29766837"

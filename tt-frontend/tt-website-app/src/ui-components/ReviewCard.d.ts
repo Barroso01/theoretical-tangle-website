@@ -39,6 +39,8 @@ export declare type ReviewCardOverridesProps = {
     "$99/Night"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type ReviewCardProps = React.PropsWithChildren<Partial<FlexProps> & {
+    predio?: any;
+} & {
     overrides?: ReviewCardOverridesProps | undefined | null;
 }>;
 export default function ReviewCard(props: ReviewCardProps): React.ReactElement;

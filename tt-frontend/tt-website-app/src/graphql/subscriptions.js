@@ -1,12 +1,98 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreatePredio = /* GraphQL */ `
+  subscription OnCreatePredio($filter: ModelSubscriptionPredioFilterInput) {
+    onCreatePredio(filter: $filter) {
+      id
+      name
+      description
+      address
+      lat
+      long
+      coverimage
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdatePredio = /* GraphQL */ `
+  subscription OnUpdatePredio($filter: ModelSubscriptionPredioFilterInput) {
+    onUpdatePredio(filter: $filter) {
+      id
+      name
+      description
+      address
+      lat
+      long
+      coverimage
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeletePredio = /* GraphQL */ `
+  subscription OnDeletePredio($filter: ModelSubscriptionPredioFilterInput) {
+    onDeletePredio(filter: $filter) {
+      id
+      name
+      description
+      address
+      lat
+      long
+      coverimage
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateTech = /* GraphQL */ `
+  subscription OnCreateTech($filter: ModelSubscriptionTechFilterInput) {
+    onCreateTech(filter: $filter) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateTech = /* GraphQL */ `
+  subscription OnUpdateTech($filter: ModelSubscriptionTechFilterInput) {
+    onUpdateTech(filter: $filter) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteTech = /* GraphQL */ `
+  subscription OnDeleteTech($filter: ModelSubscriptionTechFilterInput) {
+    onDeleteTech(filter: $filter) {
+      id
+      Name
+      Description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateGoals = /* GraphQL */ `
   subscription OnCreateGoals($filter: ModelSubscriptionGoalsFilterInput) {
     onCreateGoals(filter: $filter) {
       id
       Name
       Description
+      image
+      activeresearchers
       createdAt
       updatedAt
       __typename
@@ -19,6 +105,8 @@ export const onUpdateGoals = /* GraphQL */ `
       id
       Name
       Description
+      image
+      activeresearchers
       createdAt
       updatedAt
       __typename
@@ -28,52 +116,6 @@ export const onUpdateGoals = /* GraphQL */ `
 export const onDeleteGoals = /* GraphQL */ `
   subscription OnDeleteGoals($filter: ModelSubscriptionGoalsFilterInput) {
     onDeleteGoals(filter: $filter) {
-      id
-      Name
-      Description
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onCreateTechnology = /* GraphQL */ `
-  subscription OnCreateTechnology(
-    $filter: ModelSubscriptionTechnologyFilterInput
-  ) {
-    onCreateTechnology(filter: $filter) {
-      id
-      Name
-      Description
-      image
-      activeresearchers
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onUpdateTechnology = /* GraphQL */ `
-  subscription OnUpdateTechnology(
-    $filter: ModelSubscriptionTechnologyFilterInput
-  ) {
-    onUpdateTechnology(filter: $filter) {
-      id
-      Name
-      Description
-      image
-      activeresearchers
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onDeleteTechnology = /* GraphQL */ `
-  subscription OnDeleteTechnology(
-    $filter: ModelSubscriptionTechnologyFilterInput
-  ) {
-    onDeleteTechnology(filter: $filter) {
       id
       Name
       Description

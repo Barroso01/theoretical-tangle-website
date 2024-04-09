@@ -11,23 +11,10 @@ import Logowithtexttl from "./Logowithtexttl";
 import { Flex, Image, Text } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
 export default function NavBarHeader(props) {
-  const { user, overrides, ...rest } = props;
-  const homeOnClick = useNavigateAction({
-    type: "url",
-    url: "https://theoreticaltangle.com/",
-  });
-  const projectsOnClick = useNavigateAction({
-    type: "url",
-    url: "https://theoreticaltangle.com/projects",
-  });
-  const jobsOnClick = useNavigateAction({
-    type: "url",
-    url: "https://theoreticaltangle.com/jobs",
-  });
-  const companyOnClick = useNavigateAction({
-    type: "url",
-    url: "https://theoreticaltangle.com/company",
-  });
+  const { user, click, overrides, ...rest } = props;
+  const homeOnClick = useNavigateAction({ type: "url", url: "/" });
+  const projectsOnClick = useNavigateAction({ type: "url", url: "\\projects" });
+  const imageOnClick = useNavigateAction({ type: "url", url: "/login" });
   return (
     <Flex
       gap="40px"
@@ -137,9 +124,6 @@ export default function NavBarHeader(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Jobs"
-          onClick={() => {
-            jobsOnClick();
-          }}
           {...getOverrideProps(overrides, "Jobs")}
         ></Text>
         <Text
@@ -161,9 +145,6 @@ export default function NavBarHeader(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Company"
-          onClick={() => {
-            companyOnClick();
-          }}
           {...getOverrideProps(overrides, "Company")}
         ></Text>
       </Flex>
@@ -208,6 +189,9 @@ export default function NavBarHeader(props) {
           padding="0px 0px 0px 0px"
           objectFit="cover"
           src={user?.profilepicture}
+          onClick={() => {
+            imageOnClick();
+          }}
           {...getOverrideProps(overrides, "image")}
         ></Image>
       </Flex>
