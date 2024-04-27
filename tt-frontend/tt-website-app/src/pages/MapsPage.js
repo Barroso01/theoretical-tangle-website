@@ -1,35 +1,23 @@
-import React from "react";
+import React from 'react';
 import {
     NavBarHeader,
-    Logotl,
-    PlaceOverviewCollection,
-    ProductDetail,
 } from '../ui-components';
-import './HomePage.css'; // Assuming you create a CSS file for custom styles
-import { Flex } from '@aws-amplify/ui-react';
-import { useState } from "react";
+import MapComponent from '../mapbox-components/MapComponent';
 
+import './HomePage.css'; // Assuming you create a CSS file for custom styles
+import 'mapbox-gl/dist/mapbox-gl.css'; // Ensure proper rendering of the map
 
 function MapsPage() {
 
-    const [selected, setSelected] = useState();
-
-    console.log(selected)
-
     return (
-        <div>
+        <div >
             <NavBarHeader className="navbar-header" width={'100vw'} />
-            <Flex overflow="auto" >
+            <MapComponent height={'200px'} />
 
-            <PlaceOverviewCollection width={'20vw'} overideItems={[({item})=>({onClick:()=>setSelected(item)})]} />
-
-            <Flex position="relative" overflow="hidden" grow={1} >
-                {selected ? <ProductDetail item={selected} /> : <Logotl />}
-            </Flex>
-
-         </Flex>
         </div>
     );
 }
 
 export default MapsPage;
+
+

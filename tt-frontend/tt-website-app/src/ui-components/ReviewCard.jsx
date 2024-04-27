@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { useState } from "react";
 import { getOverrideProps } from "./utils";
 import {
   Badge,
@@ -19,6 +20,10 @@ import {
 } from "@aws-amplify/ui-react";
 export default function ReviewCard(props) {
   const { predio, overrides, ...rest } = props;
+  const [frameBorderRadius, setFrameBorderRadius] = useState(undefined);
+  const cardAreaOnClick = () => {
+    setFrameBorderRadius(2);
+  };
   return (
     <Flex
       gap="0"
@@ -60,6 +65,9 @@ export default function ReviewCard(props) {
         position="relative"
         padding="32px 32px 32px 32px"
         backgroundColor="rgba(255,255,255,1)"
+        onClick={() => {
+          cardAreaOnClick();
+        }}
         {...getOverrideProps(overrides, "Card Area")}
       >
         <Flex
@@ -86,6 +94,7 @@ export default function ReviewCard(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
+            borderRadius={frameBorderRadius}
             {...getOverrideProps(overrides, "Frame")}
           >
             <Text
