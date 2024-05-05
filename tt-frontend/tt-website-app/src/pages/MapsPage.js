@@ -13,7 +13,6 @@ function MapsPage() {
         <div >
             <NavBarHeader className="navbar-header" width={'100vw'} />
             <MapComponent height={'200px'} />
-
         </div>
     );
 }
