@@ -1,8 +1,7 @@
 import {
     NavBarHeader,
     SideBar,
-    Logotl,
-    EditProfile
+    Logotl
 } from '../ui-components';
 import './SettingsPage.css'; // Use the new CSS file
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
@@ -22,7 +21,10 @@ const SettingsPage = () => {
                     <h1>Settings</h1>
                     <Authenticator>
                         {({ user }) => (
-                            <EditProfile userData={user}/>
+                            <div>
+                                <h2>Welcome, {user.username}</h2>
+                                <button onClick={() => console.log(user)}>Log user</button>
+                            </div>
                         )}
                     </Authenticator>
                     <Logotl />

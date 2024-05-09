@@ -51,6 +51,4 @@ export { default as Stat } from "./Stat";
 export { default as TallCard } from "./TallCard";
 export { default as TechCreateForm } from "./TechCreateForm";
 export { default as TechUpdateForm } from "./TechUpdateForm";
-export { default as UserCreateForm } from "./UserCreateForm";
-export { default as UserUpdateForm } from "./UserUpdateForm";
 export { default as studioTheme } from "./studioTheme";

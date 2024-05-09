@@ -7,13 +7,13 @@ const MapComponent = () => {
     const popup = useRef(new mapboxgl.Popup({ closeOnClick: true }));
 
     useEffect(() => {
-        mapboxgl.accessToken = "pk.eyJ1IjoiYnNtYXBzMDEiLCJhIjoiY2x2ZWxoM2NyMDQ1ajJqcGhoa2Q5OWFiOCJ9.J1SGwj6YjD9M7q5vR6UMcw"; // Set your Mapbox access token her
+        mapboxgl.accessToken = "pk.eyJ1IjoiYnNtYXBzMDEiLCJhIjoiY2x2ZWxoM2NyMDQ1ajJqcGhoa2Q5OWFiOCJ9.J1SGwj6YjD9M7q5vR6UMcw"; // Set your Mapbox access token here
 
         const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/bsmaps01/clvg0amgs05g301pkboad5onc', // Set the map style here
             center: [-109.7097303553673, 23.159350793984153], // [lng, lat]
-            zoom: 15,
+            zoom: 14,
             projection: 'globe'
         });
 
@@ -21,6 +21,7 @@ const MapComponent = () => {
         map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
 
         map.on('load', () => {
+            // Add 3D buildings layer with customizations
             map.addLayer({
                 id: '3d-buildings',
                 type: 'fill-extrusion',
@@ -28,11 +29,11 @@ const MapComponent = () => {
                 'source-layer': 'building',
                 filter: ['==', 'extrude', 'true'],
                 paint: {
-                    'fill-extrusion-color': '#aaa',
+                    'fill-extrusion-color': 'hsl(190, 50%, 50%)', // color of buildings (tangled labs blue)
                     'fill-extrusion-height': [
-                        'interpolate', ['linear'], ['zoom'],
-                        15, 0,
-                        15.05, ['get', 'height']
+                        'interpolate', ['linear'], ['zoom'],  // interpolation with linear transition based on zoom level
+                        15, 0, 
+                        15.05, ['get', 'height'] // for zoom level > 15.05, extrude height of the building.
                     ],
                     'fill-extrusion-base': [
                         'interpolate', ['linear'], ['zoom'],
@@ -42,7 +43,7 @@ const MapComponent = () => {
                     'fill-extrusion-opacity': 0.6
                 }
             });
-
+            // Add landuse overlay layer
             map.addLayer({
                 id: 'landuse-overlay',
                 type: 'fill',
@@ -53,7 +54,7 @@ const MapComponent = () => {
                     'fill-opacity': 0.5
                 }
             });
-
+            // Add landuse layer
             map.addLayer({
                 id: 'landuse',
                 type: 'fill',
@@ -64,7 +65,7 @@ const MapComponent = () => {
                     'fill-opacity': 0.5
                 }
             });
-
+            // Add water layer
             map.addLayer({
                 id: 'water',
                 type: 'fill',
@@ -75,10 +76,10 @@ const MapComponent = () => {
                     'fill-opacity': 0.5
                 }
             });
-
+            // Add on click display action
             map.on('click', (e) => {
-                const features = map.queryRenderedFeatures(e.point, { layers: ['3d-buildings', 'landuse-overlay', 'landuse', 'water'] });
-                if (features.length > 0) {
+                const features = map.queryRenderedFeatures(e.point, { layers: ['3d-buildings', 'landuse-overlay', 'landuse', 'water'] }); // Obtain the features of clicked point
+                if (features.length > 0) { 
                     const feature = features[0];
                     const coordinates = e.lngLat;
                     let description = '';
@@ -91,14 +92,14 @@ const MapComponent = () => {
                             <strong>ISO 3166-1:</strong> ${feature.properties.iso_3166_1}<br/>
                             <strong>ISO 3166-2:</strong> ${feature.properties.iso_3166_2}
                         `;
-                    } else if (feature.layer.id === 'landuse-overlay') {
-                        description = `
-                            <strong>Landuse Overlay:</strong><br/>
-                            <strong>Type:</strong> ${feature.properties.class}
-                        `;
                     } else if (feature.layer.id === 'landuse') {
                         description = `
                             <strong>Landuse:</strong><br/>
+                            <strong>Type:</strong> ${feature.properties.class}
+                        `;
+                    } else if (feature.layer.id === 'landuse-overlay') {
+                        description = `
+                            <strong>Landuse Overlay:</strong><br/>
                             <strong>Type:</strong> ${feature.properties.class}
                         `;
                     } else if (feature.layer.id === 'water') {
@@ -108,13 +109,14 @@ const MapComponent = () => {
                         `;
                     }
 
-                    popup.current
+                    popup.current // Display the feature descriptions in a popup at clicked point. 
                         .setLngLat(coordinates)
                         .setHTML(description)
                         .addTo(map);
                 }
             });
 
+            // Change the cursor to a pointer when the mouse is over the 3D buildings layer.
             map.on('mouseenter', '3d-buildings', () => {
                 map.getCanvas().style.cursor = 'pointer';
             });
@@ -145,11 +147,11 @@ const MapComponent = () => {
         });
 
         return () => {
-            map.remove();
+            map.remove(); // Cleanup on unmount
         };
     }, []);
 
-    return <div ref={mapContainer} style={{ width: '100%', height: '600px' }} />;
+    return <div ref={mapContainer} style={{ width: '100%', height: '600px' }} />; // Set the map container style
 };
 
 export default MapComponent;

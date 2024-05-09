@@ -154,60 +154,6 @@ export const deleteGoals = /* GraphQL */ `
     }
   }
 `;
-export const createUser = /* GraphQL */ `
-  mutation CreateUser(
-    $input: CreateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    createUser(input: $input, condition: $condition) {
-      id
-      username
-      location
-      email
-      profilepicture
-      bio
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateUser = /* GraphQL */ `
-  mutation UpdateUser(
-    $input: UpdateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    updateUser(input: $input, condition: $condition) {
-      id
-      username
-      location
-      email
-      profilepicture
-      bio
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    deleteUser(input: $input, condition: $condition) {
-      id
-      username
-      location
-      email
-      profilepicture
-      bio
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
 export const createProject = /* GraphQL */ `
   mutation CreateProject(
     $input: CreateProjectInput!

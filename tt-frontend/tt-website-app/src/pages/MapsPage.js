@@ -12,11 +12,10 @@ function MapsPage() {
     return (
         <div >
             <NavBarHeader className="navbar-header" width={'100vw'} />
-            <MapComponent height={'200px'} />
+            <MapComponent height={'400px'} />
         </div>
     );
 }
-
 export default MapsPage;
 
 
