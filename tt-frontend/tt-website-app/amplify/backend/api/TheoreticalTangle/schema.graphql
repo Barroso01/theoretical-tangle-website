@@ -1,3 +1,11 @@
+type Message @model @auth(rules: [{allow: public}, {allow: private}, {allow: owner}]) {
+  id: ID!
+  content: String
+  owner: String
+  recipientId: String
+  timestamp: AWSDateTime
+}
+
 type Predio @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String

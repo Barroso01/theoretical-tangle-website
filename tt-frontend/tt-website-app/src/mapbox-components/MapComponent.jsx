@@ -1,3 +1,4 @@
+// mapboxgl.accessToken = "pk.eyJ1IjoiYnNtYXBzMDEiLCJhIjoiY2x2ZWxoM2NyMDQ1ajJqcGhoa2Q5OWFiOCJ9.J1SGwj6YjD9M7q5vR6UMcw"; // Set your Mapbox access token here
 import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -7,13 +8,13 @@ const MapComponent = () => {
     const popup = useRef(new mapboxgl.Popup({ closeOnClick: true }));
 
     useEffect(() => {
-        mapboxgl.accessToken = "pk.eyJ1IjoiYnNtYXBzMDEiLCJhIjoiY2x2ZWxoM2NyMDQ1ajJqcGhoa2Q5OWFiOCJ9.J1SGwj6YjD9M7q5vR6UMcw"; // Set your Mapbox access token here
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYnNtYXBzMDEiLCJhIjoiY2x2ZWxoM2NyMDQ1ajJqcGhoa2Q5OWFiOCJ9.J1SGwj6YjD9M7q5vR6UMcw';
 
         const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/bsmaps01/clvg0amgs05g301pkboad5onc', // Set the map style here
-            center: [-109.7097303553673, 23.159350793984153], // [lng, lat]
-            zoom: 14,
+            center: [-99.1899, 19.347855], // [lng, lat]
+            zoom: 20,
             projection: 'globe'
         });
 
@@ -21,7 +22,6 @@ const MapComponent = () => {
         map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
 
         map.on('load', () => {
-            // Add 3D buildings layer with customizations
             map.addLayer({
                 id: '3d-buildings',
                 type: 'fill-extrusion',
@@ -29,11 +29,11 @@ const MapComponent = () => {
                 'source-layer': 'building',
                 filter: ['==', 'extrude', 'true'],
                 paint: {
-                    'fill-extrusion-color': 'hsl(190, 50%, 50%)', // color of buildings (tangled labs blue)
+                    'fill-extrusion-color': '#055af7', //bluish colored buildings
                     'fill-extrusion-height': [
-                        'interpolate', ['linear'], ['zoom'],  // interpolation with linear transition based on zoom level
-                        15, 0, 
-                        15.05, ['get', 'height'] // for zoom level > 15.05, extrude height of the building.
+                        'interpolate', ['linear'], ['zoom'],
+                        15, 0,
+                        15.05, ['get', 'height']
                     ],
                     'fill-extrusion-base': [
                         'interpolate', ['linear'], ['zoom'],
@@ -43,7 +43,7 @@ const MapComponent = () => {
                     'fill-extrusion-opacity': 0.6
                 }
             });
-            // Add landuse overlay layer
+
             map.addLayer({
                 id: 'landuse-overlay',
                 type: 'fill',
@@ -54,7 +54,7 @@ const MapComponent = () => {
                     'fill-opacity': 0.5
                 }
             });
-            // Add landuse layer
+
             map.addLayer({
                 id: 'landuse',
                 type: 'fill',
@@ -65,7 +65,7 @@ const MapComponent = () => {
                     'fill-opacity': 0.5
                 }
             });
-            // Add water layer
+
             map.addLayer({
                 id: 'water',
                 type: 'fill',
@@ -76,47 +76,89 @@ const MapComponent = () => {
                     'fill-opacity': 0.5
                 }
             });
-            // Add on click display action
-            map.on('click', (e) => {
-                const features = map.queryRenderedFeatures(e.point, { layers: ['3d-buildings', 'landuse-overlay', 'landuse', 'water'] }); // Obtain the features of clicked point
-                if (features.length > 0) { 
-                    const feature = features[0];
-                    const coordinates = e.lngLat;
-                    let description = '';
 
-                    if (feature.layer.id === '3d-buildings') {
-                        description = `
+            map.addLayer({
+                id: 'alvaro-obregon-01000',
+                type : 'point',
+                source: 'composite',
+                'source-layer': 'alvaro-obregon-01000',
+                paint: {
+                    // for zoom closeup, big radius, for zoom out, very small radius
+                    'circle-radius': 9,
+                    'circle-opacity': 0.8,
+                }
+            })
+
+            map.on('click', (e) => {
+                const features = map.queryRenderedFeatures(e.point, { layers: ['3d-buildings', 'landuse-overlay', 'landuse', 'water', 'alvaro-obregon-01000'] });
+                if (!features.length) {
+                    return;
+                }
+
+                let description = '';
+                features.forEach(feature => {
+                    switch (feature.layer.id) {
+
+                    case 'alvaro-obregon-01000':
+                        description += ` <div>
+                            <strong>alcaldia:</strong> ${feature.properties.alcaldia}$<br/>
+                            <strong>anio_construccion:</strong> ${feature.properties.anio_construccion}$<br/>
+                            <strong>clave_rango_nivel:</strong> ${feature.properties.clave_rango_nivel}$<br/>
+                            <strong>clave_valor_unitario_suelo:</strong> ${feature.properties.clave_valor_unitario_suelo}$<br/>
+                            <strong>superficie_construccion:</strong> ${feature.properties.superficie_construccion}$<br/>
+                            <strong>superficie_terreno:</strong> ${feature.properties.superficie_terreno}$<br/>
+                            <strong>uso_construccion:</strong> ${feature.properties.uso_construccion}$<br/>
+                            <strong>valor_suelo:</strong> ${feature.properties.valor_suelo}$<br/>
+                            <strong>valor_unitario_suelo:</strong> ${feature.properties.valor_unitario_suelo} </div><br/>
+                            `;
+                        break;
+                        case '3d-buildings':
+                            description += ` <div>
                             <strong>Building ID:</strong> ${feature.properties.id}<br/>
                             <strong>Height:</strong> ${feature.properties.height}<br/>
                             <strong>Min Height:</strong> ${feature.properties.min_height}<br/>
                             <strong>ISO 3166-1:</strong> ${feature.properties.iso_3166_1}<br/>
-                            <strong>ISO 3166-2:</strong> ${feature.properties.iso_3166_2}
-                        `;
-                    } else if (feature.layer.id === 'landuse') {
-                        description = `
-                            <strong>Landuse:</strong><br/>
-                            <strong>Type:</strong> ${feature.properties.class}
-                        `;
-                    } else if (feature.layer.id === 'landuse-overlay') {
-                        description = `
+                            <strong>ISO 3166-2:</strong> ${feature.properties.iso_3166_2}</div><br/>
+                            `;
+                        break;
+                        case 'landuse-overlay':
+                            description += ` <div>
                             <strong>Landuse Overlay:</strong><br/>
-                            <strong>Type:</strong> ${feature.properties.class}
-                        `;
-                    } else if (feature.layer.id === 'water') {
-                        description = `
-                            <strong>Water:</strong><br/>
-                            <strong>Type:</strong> ${feature.properties.type}
-                        `;
-                    }
+                            <strong>Type:</strong> ${feature.properties.class}</div><br/>
+                            `;
+                        break;
+                        case 'landuse':
+                            description += ` <div>
+                                <strong>Landuse:</strong><br/>
+                                <strong>Type:</strong> ${feature.properties.class}</div><br/>
+                            `;
+                            break;
+                        case 'water':
+                            description += ` <div>
+                                <strong>Water:</strong><br/>
+                                <strong>Type:</strong> ${feature.properties.class}</div><br/>
+                            `;
+                            break;
+                        default:
+                            description += ` <div>
+                                <strong>Data on this place:</strong><br/>
+                    `;
+                        break;
 
-                    popup.current // Display the feature descriptions in a popup at clicked point. 
-                        .setLngLat(coordinates)
+                            
+                    }
+                });
+
+                if (description.length > 0){
+                    popup.current
+                        .setLngLat(e.lngLat)
                         .setHTML(description)
                         .addTo(map);
                 }
+               
             });
 
-            // Change the cursor to a pointer when the mouse is over the 3D buildings layer.
+
             map.on('mouseenter', '3d-buildings', () => {
                 map.getCanvas().style.cursor = 'pointer';
             });
@@ -144,16 +186,37 @@ const MapComponent = () => {
             map.on('mouseleave', 'water', () => {
                 map.getCanvas().style.cursor = '';
             });
+
+
+            // Add WMS source for INEGI's 'AGEB urbana'
+            map.addSource('ageb-urbana', {
+                type: 'raster',
+                tiles: [
+                    'http://gaia.inegi.org.mx/NLB/tunnel/wms/wms61?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=AGEB_urbana'
+                ],
+                tileSize: 256
+            });
+
+            // Add the layer using the source paint it with a bright color
+            map.addLayer({
+                id: 'ageb-urbana-layer',
+                type: 'raster',
+                source: 'ageb-urbana',
+                paint: {
+                    'raster-opacity': 1
+                }
+
+            });
+
         });
 
         return () => {
-            map.remove(); // Cleanup on unmount
+            map.remove();
         };
     }, []);
 
-    return <div ref={mapContainer} style={{ width: '100%', height: '600px' }} />; // Set the map container style
+    return <div ref={mapContainer} style={{ width: '100%', height: '600px' }} />;
 };
 
 export default MapComponent;
-
 

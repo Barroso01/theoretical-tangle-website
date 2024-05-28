@@ -30,6 +30,8 @@ export { default as Logowithtexttl } from "./Logowithtexttl";
 export { default as MarketingFooter } from "./MarketingFooter";
 export { default as MarketingFooterBrand } from "./MarketingFooterBrand";
 export { default as MarketingPricing } from "./MarketingPricing";
+export { default as MessageCreateForm } from "./MessageCreateForm";
+export { default as MessageUpdateForm } from "./MessageUpdateForm";
 export { default as MyIcon } from "./MyIcon";
 export { default as NavBarHeader } from "./NavBarHeader";
 export { default as NavBarHeader2 } from "./NavBarHeader2";

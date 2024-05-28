@@ -9,6 +9,7 @@ import ProjectPage from './pages/ProjectPage';
 import SettingsPage from './pages/SettingsPage'; 
 import LoginPage from './pages/LoginPage';
 import MapsPage from './pages/MapsPage'; 
+import ChatPage from './pages/ChatPage';
 
 import './App.css';
 
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/maps" element={<MapsPage />} />
+                <Route path="/chat" element={<ChatPage />} />
             </Routes>
         </Router>
     );
