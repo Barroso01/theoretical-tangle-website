@@ -1,6 +1,63 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createUserTL = /* GraphQL */ `
+  mutation CreateUserTL(
+    $input: CreateUserTLInput!
+    $condition: ModelUserTLConditionInput
+  ) {
+    createUserTL(input: $input, condition: $condition) {
+      id
+      username
+      email
+      profilepicture
+      bio
+      cognitoid
+      location
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateUserTL = /* GraphQL */ `
+  mutation UpdateUserTL(
+    $input: UpdateUserTLInput!
+    $condition: ModelUserTLConditionInput
+  ) {
+    updateUserTL(input: $input, condition: $condition) {
+      id
+      username
+      email
+      profilepicture
+      bio
+      cognitoid
+      location
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteUserTL = /* GraphQL */ `
+  mutation DeleteUserTL(
+    $input: DeleteUserTLInput!
+    $condition: ModelUserTLConditionInput
+  ) {
+    deleteUserTL(input: $input, condition: $condition) {
+      id
+      username
+      email
+      profilepicture
+      bio
+      cognitoid
+      location
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createMessage = /* GraphQL */ `
   mutation CreateMessage(
     $input: CreateMessageInput!

@@ -1,38 +1,31 @@
-import {
-    NavBarHeader,
-    SideBar,
-    Logotl
-} from '../ui-components';
-import './SettingsPage.css'; // Use the new CSS file
-import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
+import React from 'react';
+import { signOut } from 'aws-amplify/auth';
+import { useUser } from '../services/UserContext'; // Import user context
+import { NavBarHeader, SideBar, EditProfile } from '../ui-components';
+import './SettingsPage.css'; // Ensure CSS is imported
 
 const SettingsPage = () => {
-    
+    const { user, userDetails } = useUser();
 
     return (
-        <div>
-            <NavBarHeader className="navbar-header" width={'100vw'} />
-
-            <section className="settings-section">
-                <div className="settings-content">
-                    <SideBar width={'30vw'} />
+        <div className="settings-page">
+            <NavBarHeader userTL={userDetails} />
+            <h1 className="gradient-strip">Settings</h1>
+            <div className="settings-content">
+                <div className="sidebar-bubble">
+                    <SideBar />
                 </div>
-                <div className="settings-form">
-                    <h1>Settings</h1>
-                    <Authenticator>
-                        {({ user }) => (
-                            <div>
-                                <h2>Welcome, {user.username}</h2>
-                                <button onClick={() => console.log(user)}>Log user</button>
-                            </div>
-                        )}
-                    </Authenticator>
-                    <Logotl />
+                <div className="editprofile-bubble">
+                    <EditProfile userTL={userDetails} />
                 </div>
-            </section>
-                            </div>
-                        );
-                    };
+            </div>
+            <button className="signout-button" onClick={() => signOut()}>
+                Sign Out
+            </button>
+            <div className="gradient-strip"></div>
+        </div>
+    );
+};
 
-export default withAuthenticator(SettingsPage)
+export default SettingsPage;
 

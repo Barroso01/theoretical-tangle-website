@@ -1,6 +1,54 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateUserTL = /* GraphQL */ `
+  subscription OnCreateUserTL($filter: ModelSubscriptionUserTLFilterInput) {
+    onCreateUserTL(filter: $filter) {
+      id
+      username
+      email
+      profilepicture
+      bio
+      cognitoid
+      location
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateUserTL = /* GraphQL */ `
+  subscription OnUpdateUserTL($filter: ModelSubscriptionUserTLFilterInput) {
+    onUpdateUserTL(filter: $filter) {
+      id
+      username
+      email
+      profilepicture
+      bio
+      cognitoid
+      location
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteUserTL = /* GraphQL */ `
+  subscription OnDeleteUserTL($filter: ModelSubscriptionUserTLFilterInput) {
+    onDeleteUserTL(filter: $filter) {
+      id
+      username
+      email
+      profilepicture
+      bio
+      cognitoid
+      location
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateMessage = /* GraphQL */ `
   subscription OnCreateMessage(
     $filter: ModelSubscriptionMessageFilterInput

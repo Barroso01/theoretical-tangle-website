@@ -6,20 +6,15 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { useState } from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import Logowithtexttl from "./Logowithtexttl";
 import { Flex, Image, Text } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
 export default function NavBarHeader(props) {
-  const { click, user, overrides, ...rest } = props;
-  const [homeBackgroundColor, setHomeBackgroundColor] = useState(undefined);
-  const homeOnClick = useNavigateAction({ type: "url", url: "/" });
-  const homeOnMouseEnter = () => {
-    setHomeBackgroundColor('"blue"');
-  };
+  const { user, userTL, click, overrides, ...rest } = props;
+  const homeOnClick = useNavigateAction({ type: "url", url: "\\" });
   const projectsOnClick = useNavigateAction({ type: "url", url: "\\projects" });
-  const imageOnClick = useNavigateAction({ type: "url", url: "/login" });
+  const imageOnClick = useNavigateAction({ type: "url", url: "/settings" });
   return (
     <Flex
       gap="40px"
@@ -81,12 +76,8 @@ export default function NavBarHeader(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Home"
-          backgroundColor={homeBackgroundColor}
           onClick={() => {
             homeOnClick();
-          }}
-          onMouseEnter={() => {
-            homeOnMouseEnter();
           }}
           {...getOverrideProps(overrides, "Home")}
         ></Text>
@@ -197,7 +188,7 @@ export default function NavBarHeader(props) {
           borderRadius="160px"
           padding="0px 0px 0px 0px"
           objectFit="cover"
-          src="https://theoretical-tangle-storage-12103bfe191612-staging.s3.us-west-1.amazonaws.com/public/default-profilepicture.png"
+          src={userTL?.profilepicture}
           onClick={() => {
             imageOnClick();
           }}

@@ -32,8 +32,9 @@ export declare type NavBarHeaderOverridesProps = {
     image?: PrimitiveOverrideProps<ImageProps>;
 } & EscapeHatchProps;
 export declare type NavBarHeaderProps = React.PropsWithChildren<Partial<FlexProps> & {
-    click?: React.ReactNode;
     user?: any;
+    userTL?: any;
+    click?: React.ReactNode;
 } & {
     overrides?: NavBarHeaderOverridesProps | undefined | null;
 }>;

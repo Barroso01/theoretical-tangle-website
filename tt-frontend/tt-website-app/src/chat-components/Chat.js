@@ -4,28 +4,27 @@ import { createMessage } from '../graphql/mutations';
 import { listMessages } from '../graphql/queries';
 import { onCreateMessage } from '../graphql/subscriptions';
 import './Chat.css';
+import { Authenticator, useAuthenticator, withAuthenticator} from '@aws-amplify/ui-react';
 
 const Chat = () => {
-  // Initialize state variables
   const [messages, setMessages] = useState([]);
   const client = generateClient();
-  const [inputValue, setinputValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const { user } = useAuthenticator(); // Use useAuthenticator hook to get the current user
 
-  // Hook to fetch messages and subscribe to new messages
   useEffect(() => {
-    // Fetch messages
+    // Fetch messages on component mount
     const fetchMessages = async () => {
       try {
         const messageData = await client.graphql({
           query: listMessages
         });
-        setMessages(messageData.data.listMessages.items); // Update state messages with items from query
+        setMessages(messageData.data.listMessages.items);
       } catch (err) {
         console.log('error fetching messages', err);
       }
     };
     fetchMessages();
-
     // Subscribe to new messages
     const subscription = client.graphql({
       query: onCreateMessage
@@ -36,37 +35,37 @@ const Chat = () => {
       }
     });
 
-    return () => subscription.unsubscribe(); // Unsubscribe from the subscription when the component unmounts
+    return () => subscription.unsubscribe();
   }, [client]);
-
-  // Function to handle the message change 
+  // Handle input field change on event e 
   const handleMessageChange = (e) => {
-    setinputValue(e.target.value);
+    setInputValue(e.target.value);
   };
-
-  // Function to handle the message submission
+  // Handle message submission
   const handleMessageSubmit = async () => {
     if (inputValue.trim()) {
       await client.graphql({
         query: createMessage,
-        variables: { input: { content: inputValue, owner: 'Sneaky'} }
+        variables: { input: { content: inputValue, owner: user.username } } // Use current user's username as owner
       });
+      setInputValue(''); // Clear input field after submission
     }
   };
 
   return (
-    <div>
-      <div>
-        {messages.map((message, index) => (
-          <p key={index}>{message.content}</p>
-        ))}
-      </div>
-      <input value={inputValue} onChange={handleMessageChange} placeholder="Type a message" />
-      <button onClick={handleMessageSubmit}>Send Message</button>
+    <div className="chat-box">
+      {messages.map((message, index) => (
+        <div className="message" key={index}>
+          <p>{message.content}</p>
+          <small>{message.owner || 'Unknown'} at {new Date(message.timestamp).toLocaleString()}</small>
+        </div>
+      ))}
+      <input className="input-field" value={inputValue} onChange={handleMessageChange} placeholder="Type a message" />
+      <button className="send-button" onClick={handleMessageSubmit}>Send Message</button>
     </div>
   );
 };
 
-export default Chat;
+export default withAuthenticator(Chat);
 
   

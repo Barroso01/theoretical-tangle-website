@@ -1,6 +1,46 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getUserTL = /* GraphQL */ `
+  query GetUserTL($id: ID!) {
+    getUserTL(id: $id) {
+      id
+      username
+      email
+      profilepicture
+      bio
+      cognitoid
+      location
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listUserTLS = /* GraphQL */ `
+  query ListUserTLS(
+    $filter: ModelUserTLFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserTLS(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        username
+        email
+        profilepicture
+        bio
+        cognitoid
+        location
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getMessage = /* GraphQL */ `
   query GetMessage($id: ID!) {
     getMessage(id: $id) {

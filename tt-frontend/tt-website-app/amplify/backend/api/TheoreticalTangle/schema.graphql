@@ -1,3 +1,13 @@
+type UserTL @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String
+  email: String
+  profilepicture: AWSURL
+  bio: String
+  cognitoid: String
+  location: String
+}
+
 type Message @model @auth(rules: [{allow: public}, {allow: private}, {allow: owner}]) {
   id: ID!
   content: String

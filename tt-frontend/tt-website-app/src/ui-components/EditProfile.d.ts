@@ -35,6 +35,8 @@ export declare type EditProfileOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type EditProfileProps = React.PropsWithChildren<Partial<FlexProps> & {
+    userTL?: any;
+} & {
     overrides?: EditProfileOverridesProps | undefined | null;
 }>;
 export default function EditProfile(props: EditProfileProps): React.ReactElement;
