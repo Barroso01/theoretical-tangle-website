@@ -1,6 +1,51 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateStartup = /* GraphQL */ `
+  subscription OnCreateStartup($filter: ModelSubscriptionStartupFilterInput) {
+    onCreateStartup(filter: $filter) {
+      id
+      logo
+      startupname
+      coverimage
+      verticals
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateStartup = /* GraphQL */ `
+  subscription OnUpdateStartup($filter: ModelSubscriptionStartupFilterInput) {
+    onUpdateStartup(filter: $filter) {
+      id
+      logo
+      startupname
+      coverimage
+      verticals
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteStartup = /* GraphQL */ `
+  subscription OnDeleteStartup($filter: ModelSubscriptionStartupFilterInput) {
+    onDeleteStartup(filter: $filter) {
+      id
+      logo
+      startupname
+      coverimage
+      verticals
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateUserTL = /* GraphQL */ `
   subscription OnCreateUserTL($filter: ModelSubscriptionUserTLFilterInput) {
     onCreateUserTL(filter: $filter) {

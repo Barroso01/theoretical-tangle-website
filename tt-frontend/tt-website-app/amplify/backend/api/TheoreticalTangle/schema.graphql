@@ -1,3 +1,12 @@
+type Startup @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  logo: AWSURL
+  startupname: String
+  coverimage: AWSURL
+  verticals: String
+  description: String
+}
+
 type UserTL @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String

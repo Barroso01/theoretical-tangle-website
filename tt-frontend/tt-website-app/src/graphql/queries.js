@@ -1,6 +1,44 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getStartup = /* GraphQL */ `
+  query GetStartup($id: ID!) {
+    getStartup(id: $id) {
+      id
+      logo
+      startupname
+      coverimage
+      verticals
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listStartups = /* GraphQL */ `
+  query ListStartups(
+    $filter: ModelStartupFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listStartups(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        logo
+        startupname
+        coverimage
+        verticals
+        description
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getUserTL = /* GraphQL */ `
   query GetUserTL($id: ID!) {
     getUserTL(id: $id) {

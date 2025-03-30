@@ -1,48 +1,70 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { UserProvider } from './services/UserContext';
-import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
-import awsExports from './aws-exports';
+import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import config from './amplifyconfiguration.json';
+
+// Import configuration
+import awsExports from './aws-exports';
+import './App.css';
+
+// Import pages
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
 import SettingsPage from './pages/SettingsPage'; 
-import LoginPage from './pages/LoginPage';
 import MapsPage from './pages/MapsPage'; 
 import ChatPage from './pages/ChatPage';
+import LoginPage from './pages/LoginPage';
 
-import './App.css';
+// Import the AuthRequired component
+import AuthRequired from './components/AuthRequired';
 
+// Configure Amplify once
 Amplify.configure(awsExports);
-Amplify.configure(config);
-
-
 
 function App() {
     return (
-
-        <Authenticator>
-            {({ signOut, user }) => (
-            <UserProvider>
-            
-                <Router>
+        <Router>
+            <Authenticator.Provider>
+                <UserProvider>
                     <Routes>
+                        {/* Public routes - accessible without authentication */}
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/projects" element={<ProjectPage />} />
-                        <Route path="/settings" element={<SettingsPage />} />
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/maps" element={<MapsPage />} />
-                        <Route path="/chat" element={<ChatPage />} />
+                        
+                        {/* Protected routes - require authentication */}
+                        <Route path="/projects" element={
+                            <AuthRequired>
+                                <ProjectPage />
+                            </AuthRequired>
+                        } />
+                        
+                        <Route path="/settings" element={
+                            <AuthRequired>
+                                <SettingsPage />
+                            </AuthRequired>
+                        } />
+                        
+                        <Route path="/maps" element={
+                            <AuthRequired>
+                                <MapsPage />
+                            </AuthRequired>
+                        } />
+                        
+                        <Route path="/chat" element={
+                            <AuthRequired>
+                                <ChatPage />
+                            </AuthRequired>
+                        } />
+                        
+                        {/* Catch-all redirect to home page */}
+                        <Route path="*" element={<Navigate to="/" replace />} />
                     </Routes>
-                </Router>
-            </UserProvider>
-            )}
-        </Authenticator>
-    
+                </UserProvider>
+            </Authenticator.Provider>
+        </Router>
     );
 }
-
 
 export default App;

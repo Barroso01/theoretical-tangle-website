@@ -1,6 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createStartup = /* GraphQL */ `
+  mutation CreateStartup(
+    $input: CreateStartupInput!
+    $condition: ModelStartupConditionInput
+  ) {
+    createStartup(input: $input, condition: $condition) {
+      id
+      logo
+      startupname
+      coverimage
+      verticals
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateStartup = /* GraphQL */ `
+  mutation UpdateStartup(
+    $input: UpdateStartupInput!
+    $condition: ModelStartupConditionInput
+  ) {
+    updateStartup(input: $input, condition: $condition) {
+      id
+      logo
+      startupname
+      coverimage
+      verticals
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteStartup = /* GraphQL */ `
+  mutation DeleteStartup(
+    $input: DeleteStartupInput!
+    $condition: ModelStartupConditionInput
+  ) {
+    deleteStartup(input: $input, condition: $condition) {
+      id
+      logo
+      startupname
+      coverimage
+      verticals
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createUserTL = /* GraphQL */ `
   mutation CreateUserTL(
     $input: CreateUserTLInput!

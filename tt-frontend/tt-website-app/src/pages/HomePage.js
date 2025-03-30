@@ -60,4 +60,4 @@ const HomePage = () => {
     );
 };
 
-export default withAuthenticator(HomePage);
+export default HomePage;

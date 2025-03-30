@@ -1,37 +1,32 @@
-// src/pages/LoginPage.js
-import React from 'react';
-import { Authenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-import './LoginPage.css'; // Use the new CSS file
-import {
-    Logotl
-} from '../ui-components';
+import React, { useEffect } from 'react'; 
+import { useNavigate, useLocation } from 'react-router-dom'; 
+import { Authenticator,useAuthenticator } from '@aws-amplify/ui-react'; 
+import './LoginPage.css';
 
-const LoginPage = () => {
-    return (
-        <div className="login-page">
-            <div className="login-form">
-                <Authenticator>
-                    {({ signOut, user }) => (
-                        <main>
-                            <h1>Welcome</h1>
-                            <p>{user?.username}</p>
-                            <p> </p>
-                            <img src={user?.photo} alt="Profile" />
-                            <p> </p>
-                            <button onClick={signOut}>Sign out</button>
-                            <p> </p>
-                            <button onClick={() => { window.location.href = "/settings" }}>Update Information</button>
-                        </main>
-                    )}
-                </Authenticator>
-            </div>
-                <div className="login-branding">
-                    <Logotl />
-                    <h1>Deploy software in your business asap</h1>
-                </div>
-            </div>
-    );
-};
+function LoginPage() {
+  const navigate = useNavigate(); // Hook to programmatically navigate
+  const location = useLocation(); // Hook to access the current location
+  const { route } = useAuthenticator((context) => [context.route]); // Get the current route from Authenticator context
 
-export default LoginPage;
+  useEffect(() => {
+    if (route === 'authenticated') {
+      // If the user is authenticated, navigate to the home page
+      const from = location.state?.from || '//'; 
+      navigate(from, {replace: true});
+    }
+  }, [route, navigate, location]); // Add dependencies to the useEffect hook
+
+  return (
+    <div className="login-container"> 
+      <div className = "login-card">
+        <h2 className = "login-heading"> Welcome to Tangled Labs Website </h2>
+        <h3 className = "login-subheading"> Please login to continue </h3> 
+        
+        <Authenticator/>
+
+      </div>
+    </div> 
+  ); 
+}
+
+export default LoginPage; 

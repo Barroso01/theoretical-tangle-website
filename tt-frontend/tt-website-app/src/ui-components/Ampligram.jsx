@@ -10,7 +10,7 @@ import { getOverrideProps } from "./utils";
 import { Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
 export default function Ampligram(props) {
-  const { overrides, ...rest } = props;
+  const { startup, overrides, ...rest } = props;
   return (
     <Flex
       gap="8px"
@@ -64,6 +64,7 @@ export default function Ampligram(props) {
             borderRadius="160px"
             padding="0px 0px 0px 0px"
             objectFit="cover"
+            src={startup?.logo}
             {...getOverrideProps(overrides, "image29766764")}
           ></Image>
           <Text
@@ -85,7 +86,7 @@ export default function Ampligram(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Rene Brandel"
+            children={startup?.startupname}
             {...getOverrideProps(overrides, "Rene Brandel")}
           ></Text>
         </Flex>
@@ -151,6 +152,7 @@ export default function Ampligram(props) {
         position="relative"
         padding="0px 0px 0px 0px"
         objectFit="cover"
+        src={startup?.coverimage}
         {...getOverrideProps(overrides, "image29766769")}
       ></Image>
       <Flex
@@ -318,7 +320,7 @@ export default function Ampligram(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Firstname Lastname"
+            children={startup?.verticals}
             {...getOverrideProps(overrides, "Firstname Lastname")}
           ></Text>
           <Text
@@ -341,7 +343,7 @@ export default function Ampligram(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.”"
+            children={startup?.description}
             {...getOverrideProps(
               overrides,
               "\u201CLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.\u201D"

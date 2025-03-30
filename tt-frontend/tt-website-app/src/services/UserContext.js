@@ -1,50 +1,56 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { generateClient } from 'aws-amplify/api';
-import { getUserTL } from '../graphql/queries';
+import { fetchUserAttributes } from 'aws-amplify/auth';
 
+// Create the context
 const UserContext = createContext(null);
 
-export const useUser = () => useContext(UserContext);
+// Provider component
+export function UserProvider({ children }) {
+  // useAuthenticator will work now because we've wrapped the app with Authenticator.Provider
+  const { user, route } = useAuthenticator((context) => [context.user, context.route]);
+  const [userAttributes, setUserAttributes] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-export const UserProvider = ({ children }) => {
-    const { user } = useAuthenticator();
-    const userId = user.username;
-    const [userDetails, setUserDetails] = useState(null);
-    const client = generateClient();
-
-    useEffect(() => {
-        if (user) {
-            console.log("User object from Authenticator:", user);
-            const userId = user.username;  // Commonly, `sub` is used as a unique identifier
-            console.log("Using user ID for query:", userId);
-    
-            const fetchData = async () => {
-                const response = await client.graphql({
-                    query: getUserTL,
-                    variables: { id: userId }
-                });
-                if (response.data.getUserTL) {
-                    setUserDetails(response.data.getUserTL);
-                } else {
-                    console.error("No user details returned:", response);
-                }
-            };
-    
-            fetchData().catch(error => {
-                console.error("Error fetching user details:", error);
-            });
-        } else {
-            console.log("No user logged in.");
-            setUserDetails(null);
+  // Fetch user attributes when authenticated
+  useEffect(() => {
+    const getUserData = async () => {
+      if (route === 'authenticated' && user) {
+        try {
+          setLoading(true);
+          // Get user attributes from Cognito
+          const attributes = await fetchUserAttributes();
+          setUserAttributes(attributes);
+        } catch (error) {
+          console.error('Error fetching user attributes:', error);
+        } finally {
+          setLoading(false);
         }
-    }, [user, client]); // Including client in dependencies as per ESLint suggestion
-    
+      } else {
+        setUserAttributes(null);
+        setLoading(false);
+      }
+    };
 
-    return (
-        <UserContext.Provider value={{ user, userDetails }}>
-            {children}
-        </UserContext.Provider>
-    );
-};
+    getUserData();
+  }, [user, route]);
 
+  // Value to be provided to consumers
+  const value = {
+    user,
+    userAttributes,
+    isAuthenticated: route === 'authenticated',
+    loading
+  };
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+}
+
+// Custom hook for using the context
+export function useUser() {
+  const context = useContext(UserContext);
+  if (context === null) {
+    throw new Error('useUser must be used within a UserProvider');
+  }
+  return context;
+}

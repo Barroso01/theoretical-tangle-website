@@ -43,6 +43,8 @@ export declare type AmpligramOverridesProps = {
     Timestamp?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type AmpligramProps = React.PropsWithChildren<Partial<FlexProps> & {
+    startup?: any;
+} & {
     overrides?: AmpligramOverridesProps | undefined | null;
 }>;
 export default function Ampligram(props: AmpligramProps): React.ReactElement;
