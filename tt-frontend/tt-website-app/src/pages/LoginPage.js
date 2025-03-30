@@ -6,12 +6,12 @@ import './LoginPage.css';
 function LoginPage() {
   const navigate = useNavigate(); // Hook to programmatically navigate
   const location = useLocation(); // Hook to access the current location
-  const { route } = useAuthenticator((context) => [context.route]); // Get the current route from Authenticator context
+  const { route } = useAuthenticator((context) => [context.route]); // Get the current route (or auth state) from Authenticator context
 
   useEffect(() => {
     if (route === 'authenticated') {
-      // If the user is authenticated, navigate to the home page
-      const from = location.state?.from || '//'; 
+      // If user is authenticated, navigate to url the user was trying to access or (||) default to '/settings'
+      const from = location.state?.from || '/settings';  // from = redirect URL
       navigate(from, {replace: true});
     }
   }, [route, navigate, location]); // Add dependencies to the useEffect hook
@@ -19,7 +19,7 @@ function LoginPage() {
   return (
     <div className="login-container"> 
       <div className = "login-card">
-        <h2 className = "login-heading"> Welcome to Tangled Labs Website </h2>
+        <h2 className = "login-heading"> Welcome to the lab's website </h2>
         <h3 className = "login-subheading"> Please login to continue </h3> 
         
         <Authenticator/>
