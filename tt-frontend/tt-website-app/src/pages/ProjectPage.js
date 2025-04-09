@@ -1,8 +1,6 @@
 import React from 'react';
-import { withAuthenticator} from '@aws-amplify/ui-react';
 
 import {
-    NavBarHeader,
     ProjectCollection,
     MarketingFooter
    } from '../ui-components';
@@ -12,8 +10,6 @@ const ProjectsPage = () => {
     return (
         
         <div>
-
-            <NavBarHeader className="navbar-header" width={'100vw'} />
 
             {/* Projects Section */}
             <div className="project-collection-container">
@@ -27,4 +23,4 @@ const ProjectsPage = () => {
     );
 };
 
-export default withAuthenticator(ProjectsPage);
+export default ProjectsPage;

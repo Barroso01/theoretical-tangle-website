@@ -7,39 +7,95 @@
 
 .settings-content {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Aligns items at the top */
-  width: 80%; /* Adjust width as needed */
-  margin-top: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 2% auto;
+  gap: 2%;
 }
 
 .sidebar-bubble, .editprofile-bubble {
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 48%; /* Adjust width as needed for each bubble */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 900px; /* Ensures both bubbles have the same height */
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  padding: 5%;
+}
+
+.sidebar-bubble {
+  flex: 1;
+  min-width: 20%; /* Percentage of parent container */
+  max-width: 30%; /* Percentage of parent container */
+}
+
+.editprofile-bubble {
+  flex: 3; /* Increased ratio to give more space to EditProfile */
+  min-width: 40%; /* Percentage of container width */
 }
 
 .signout-button {
-  margin: 30px 0; /* Increased space above and below the button */
-  padding: 10px 20px;
-  font-size: 16px;
+  margin: 3% 0;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
   cursor: pointer;
   background-color: #3887be;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.3rem;
 }
 
 .gradient-strip {
   width: 100%;
-  height: 50px; /* Height of the gradient strip */
+  height: 3rem;
   background: linear-gradient(-45deg, hsl(190, 100%, 15%), hsl(190, 50%, 50%), hsl(190, 75%, 95%), hsl(190, 50%, 50%), hsl(190, 100%, 15%));
-  margin-top: 30px; /* Space between button and strip */
+  margin-top: 3%;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+}
+
+/* First breakpoint - minimize sidebar */
+@media (max-width: 900px) {
+  .sidebar-bubble {
+    flex: 0.5; /* Reduce sidebar's proportional size */
+    min-width: 15%; /* Percentage-based */
+  }
+  
+  .editprofile-bubble {
+    flex: 4; /* Give more space to EditProfile */
+  }
+}
+
+/* Second breakpoint - stack components but show EditProfile first */
+@media (max-width: 768px) {
+  .settings-content {
+    flex-direction: column;
+    width: 95%;
+  }
+  
+  /* Reverse the order so EditProfile appears first */
+  .sidebar-bubble {
+    order: 2;
+    width: 100%;
+    max-width: none;
+    margin-top: 5%;
+  }
+  
+  .editprofile-bubble {
+    order: 1;
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Make sure all content inside components is responsive */
+.sidebar-bubble > *, .editprofile-bubble > * {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Handle any form elements inside components */
+input, select, textarea, button {
+  max-width: 100%;
+  box-sizing: border-box;
 }

@@ -11,8 +11,16 @@ import Logowithtexttl from "./Logowithtexttl";
 import { Flex, Image, Text } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
 export default function NavBarHeader(props) {
-  const { user, userTL, click, overrides, ...rest } = props;
-  const homeOnClick = useNavigateAction({ type: "url", url: "\\" });
+  const {
+    user,
+    userTL,
+    click,
+    isAuthenticated,
+    currentPage,
+    overrides,
+    ...rest
+  } = props;
+  const homeOnClick = useNavigateAction({ type: "url", url: '"/"' });
   const projectsOnClick = useNavigateAction({ type: "url", url: "\\projects" });
   const imageOnClick = useNavigateAction({ type: "url", url: "/settings" });
   return (

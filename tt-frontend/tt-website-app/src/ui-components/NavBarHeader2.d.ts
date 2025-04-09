@@ -31,6 +31,10 @@ export declare type NavBarHeader2OverridesProps = {
     Button39493467?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type NavBarHeader2Props = React.PropsWithChildren<Partial<FlexProps> & {
+    isAuthenticated?: Boolean;
+    currentPage?: String;
+    Click?: React.ReactNode;
+} & {
     overrides?: NavBarHeader2OverridesProps | undefined | null;
 }>;
 export default function NavBarHeader2(props: NavBarHeader2Props): React.ReactElement;

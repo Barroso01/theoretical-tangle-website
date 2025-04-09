@@ -6,11 +6,21 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import Logotl from "./Logotl";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 export default function NavBarHeader2(props) {
-  const { overrides, ...rest } = props;
+  const { isAuthenticated, currentPage, Click, overrides, ...rest } = props;
+  const homeOnClick = useNavigateAction({ type: "url", url: "/" });
+  const projectsOnClick = useNavigateAction({ type: "url", url: "/projects" });
+  const buttonThreeNineFourNineThreeFourSixSixOnClick = useNavigateAction({
+    type: "url",
+    url: "/login",
+  });
+  const buttonThreeNineFourNineThreeFourSixSevenOnClick = useNavigateAction({
+    type: "url",
+    url: "/settings",
+  });
   return (
     <Flex
       gap="10px"
@@ -71,6 +81,9 @@ export default function NavBarHeader2(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Home"
+          onClick={() => {
+            homeOnClick();
+          }}
           {...getOverrideProps(overrides, "Home")}
         ></Text>
         <Text
@@ -92,6 +105,9 @@ export default function NavBarHeader2(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Projects"
+          onClick={() => {
+            projectsOnClick();
+          }}
           {...getOverrideProps(overrides, "Projects")}
         ></Text>
         <Text
@@ -157,6 +173,9 @@ export default function NavBarHeader2(props) {
           isDisabled={false}
           variation="link"
           children="Log in"
+          onClick={() => {
+            buttonThreeNineFourNineThreeFourSixSixOnClick();
+          }}
           {...getOverrideProps(overrides, "Button39493466")}
         ></Button>
         <Button
@@ -167,6 +186,9 @@ export default function NavBarHeader2(props) {
           isDisabled={false}
           variation="primary"
           children="Sign up"
+          onClick={() => {
+            buttonThreeNineFourNineThreeFourSixSevenOnClick();
+          }}
           {...getOverrideProps(overrides, "Button39493467")}
         ></Button>
       </Flex>

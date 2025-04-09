@@ -24,13 +24,6 @@
     background: linear-gradient(-45deg, hsl(190, 75%, 95%), #f4f4f4)
 }
 
-.navbar-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Ensure it stays above other content */
-    /* Other styles for your header */
-}
-
 .section {
     padding: 20px;
     text-align: center;
@@ -96,3 +89,19 @@
     padding-right: 20px; /* Add padding to the right side */
 }
 
+/* Add this to your HomePage.css or create a new NavBar.css */
+.navbar-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+    width: 100% !important; /* Force full width */
+    max-width: 100% !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Active link styling - these will be applied through overrides */
+.nav-link-active {
+    color: #3887be !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+}

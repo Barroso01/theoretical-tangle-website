@@ -35,6 +35,8 @@ export declare type NavBarHeaderProps = React.PropsWithChildren<Partial<FlexProp
     user?: any;
     userTL?: any;
     click?: React.ReactNode;
+    isAuthenticated?: Boolean;
+    currentPage?: String;
 } & {
     overrides?: NavBarHeaderOverridesProps | undefined | null;
 }>;
